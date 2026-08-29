@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!--
+    Deck cover. Seriph's `cover` layout paints a dark scrim over this image, so
+    every value here is tuned brighter than it looks standalone. The centre band
+    (y 260-620) is kept empty: that is where the title and subtitle land.
+  -->
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#12271b"/>
+      <stop offset="55%"  stop-color="#0d1d15"/>
+      <stop offset="100%" stop-color="#0a1712"/>
+    </linearGradient>
+
+    <radialGradient id="glowA" cx="0.14" cy="0.12" r="0.6">
+      <stop offset="0%"   stop-color="#8ed85c" stop-opacity="0.85"/>
+      <stop offset="45%"  stop-color="#6db33f" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#6db33f" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowB" cx="0.9" cy="0.9" r="0.55">
+      <stop offset="0%"   stop-color="#3fae7c" stop-opacity="0.60"/>
+      <stop offset="100%" stop-color="#3fae7c" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#8ed85c" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+
+    <!-- grid fades out behind the title so it never reads as texture on type -->
+    <radialGradient id="gridMask" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0%"   stop-color="#000000"/>
+      <stop offset="55%"  stop-color="#4d4d4d"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+    <mask id="gridFade">
+      <rect width="1920" height="1080" fill="url(#gridMask)"/>
+    </mask>
+
+    <!-- userSpaceOnUse: an objectBoundingBox gradient degenerates on the
+         zero-height horizontal / zero-width vertical edges below -->
+    <linearGradient id="wire" gradientUnits="userSpaceOnUse"
+                    x1="140" y1="130" x2="380" y2="310">
+      <stop offset="0%"   stop-color="#8ed85c" stop-opacity="0.30"/>
+      <stop offset="50%"  stop-color="#8ed85c" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#8ed85c" stop-opacity="0.30"/>
+    </linearGradient>
+
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#base)"/>
+  <rect width="1920" height="1080" fill="url(#grid)" mask="url(#gridFade)"/>
+  <rect width="1920" height="1080" fill="url(#glowA)"/>
+  <rect width="1920" height="1080" fill="url(#glowB)"/>
+
+  <!-- Abstract application context: a boundary holding wired beans.
+       Bottom-left, clear of the title. -->
+  <g transform="translate(96, 636) scale(0.78)">
+    <rect x="0" y="0" width="520" height="440" rx="40"
+          fill="#8ed85c" fill-opacity="0.045"
+          stroke="#8ed85c" stroke-opacity="0.42" stroke-width="2.5"/>
+
+    <g stroke="url(#wire)" stroke-width="2.5" fill="none">
+      <path d="M140 130 L380 130"/>
+      <path d="M140 130 L140 310"/>
+      <path d="M380 130 L380 310"/>
+      <path d="M140 310 L380 310"/>
+      <path d="M140 130 L380 310"/>
+      <path d="M380 130 L140 310"/>
+    </g>
+
+    <g fill="#8ed85c" fill-opacity="0.55" filter="url(#soft)">
+      <circle cx="140" cy="130" r="14"/>
+      <circle cx="380" cy="310" r="14"/>
+    </g>
+    <g fill="#0d1d15" stroke="#a6e878" stroke-opacity="0.95" stroke-width="3">
+      <circle cx="140" cy="130" r="15"/>
+      <circle cx="380" cy="130" r="15"/>
+      <circle cx="140" cy="310" r="15"/>
+      <circle cx="380" cy="310" r="15"/>
+    </g>
+  </g>
+
+  <!-- request -> response, top-right, above the title band -->
+  <g>
+    <path d="M1240 250 C 1420 250, 1470 120, 1660 120"
+          fill="none" stroke="#8ed85c" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="12 14"/>
+    <path d="M1660 190 C 1470 190, 1420 60, 1240 60"
+          fill="none" stroke="#8ed85c" stroke-opacity="0.28" stroke-width="2.5" stroke-dasharray="12 14"/>
+    <circle cx="1660" cy="120" r="12" fill="#a6e878" fill-opacity="0.85"/>
+    <circle cx="1660" cy="120" r="22" fill="#8ed85c" fill-opacity="0.35" filter="url(#soft)"/>
+    <circle cx="1240" cy="250" r="8"  fill="#8ed85c" fill-opacity="0.60"/>
+    <circle cx="1240" cy="60"  r="8"  fill="#8ed85c" fill-opacity="0.35"/>
+  </g>
+
+  <!-- pipeline: build -> test -> ship, bottom-right -->
+  <g transform="translate(1180, 880)">
+    <path d="M0 0 H560" stroke="#8ed85c" stroke-opacity="0.35" stroke-width="2.5"/>
+    <g fill="#0d1d15" stroke="#8ed85c" stroke-opacity="0.75" stroke-width="3">
+      <circle cx="0"   cy="0" r="13"/>
+      <circle cx="280" cy="0" r="13"/>
+      <circle cx="560" cy="0" r="13"/>
+    </g>
+    <circle cx="560" cy="0" r="20" fill="#8ed85c" fill-opacity="0.35" filter="url(#soft)"/>
+  </g>
+
+  <g fill="#8ed85c" fill-opacity="0.42">
+    <circle cx="940"  cy="118" r="5"/>
+    <circle cx="1804" cy="392" r="4"/>
+    <circle cx="806"  cy="962" r="4"/>
+    <circle cx="1860" cy="712" r="5"/>
+    <circle cx="640"  cy="176" r="3"/>
+  </g>
+</svg>
