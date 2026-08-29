@@ -1,0 +1,7 @@
+allowBuilds:
+  playwright-chromium: true
+
+onlyBuiltDependencies:
+  - playwright-chromium
+
+shamefullyHoist: true
