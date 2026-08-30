@@ -47,14 +47,8 @@ htmlAttrs:
 Modern Java → the Spring container → REST → shipped
 
 ---
-src: ./slides/01-oop-and-enterprise.md
----
-
-<!-- [[[
----
 src: ./slides/02-modern-java-types.md
 ---
-]]] -->
 
 <!-- [[[
 ---
