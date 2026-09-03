@@ -1,53 +1,25 @@
 /**
- * STEP 1 — Replace this class with a record.
+ * STEP 1 — SOLUTION.
  *
- * Right now this is the Session 1 version: twelve lines to say
- * "an order is an email and a total" — and it is still missing
- * equals(), hashCode() and toString().
- *
- * TODO: delete everything below and write, in its place:
- *
- *   public record Order(String customerEmail, double total) { ... }
- *
- * Then add a COMPACT CONSTRUCTOR (no parameter list, no field assignment):
- *
- *   public Order {
- *       // 1. reject a null or blank email:
- *       //      throw new IllegalArgumentException("customerEmail is required")
- *       // 2. reject a negative total:
- *       //      throw new IllegalArgumentException("total cannot be negative")
- *       // 3. normalise the email: customerEmail = customerEmail.trim().toLowerCase();
- *       //    (reassigning the PARAMETER changes what gets stored — this is the
- *       //     one place in Java where that is a feature and not a bug)
- *   }
- *
- * And add one method:
- *
- *   public Order withDiscount(double percent) {
- *       // return a NEW Order — records are immutable, you never modify one
- *       // total * (1 - percent / 100)
- *   }
- *
- * When you are done, this whole file should be about 20 lines including comments.
- *
- * Stuck on what a record generates? Run ../examples/RecordAnatomy.java — it
- * prints the answer for this exact record.
+ * Twelve lines became one, and this version has more in it: equals(),
+ * hashCode() and toString() were all generated.
  */
-public class Order {
+public record Order(String customerEmail, double total) {
 
-    private final String customerEmail;
-    private final double total;
-
-    public Order(String customerEmail, double total) {
-        this.customerEmail = customerEmail;
-        this.total = total;
+    // Compact constructor: no parameter list, no field assignment.
+    // Your code runs first; the compiler assigns the fields afterwards.
+    public Order {
+        if (customerEmail == null || customerEmail.isBlank()) {
+            throw new IllegalArgumentException("customerEmail is required");
+        }
+        if (total < 0) {
+            throw new IllegalArgumentException("total cannot be negative");
+        }
+        customerEmail = customerEmail.trim().toLowerCase();
     }
 
-    public String customerEmail() {
-        return customerEmail;
-    }
-
-    public double total() {
-        return total;
+    /** A "wither": returns a NEW Order. Records are never modified. */
+    public Order withDiscount(double percent) {
+        return new Order(customerEmail, total * (1 - percent / 100));
     }
 }
