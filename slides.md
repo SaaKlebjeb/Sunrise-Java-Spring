@@ -16,10 +16,10 @@ info: |
   14 sessions · Intermediate
 
   Session 1: Java OOP & the Enterprise Context
-  Session 2: Modern Java I — var, Records, Sealed Types, Text Blocks
-  Session 3: Modern Java II — Lambdas, Streams, Pattern Matching, Virtual Threads
-  Session 4: Testing in Java — JUnit 5 & Mockito
-  Session 5: Build Tools — Maven & Gradle
+  Session 2: Modern Java Types — var, records, sealed types, text blocks
+  Session 3: Build Tools and Functional Java — Maven, Gradle, lambdas, streams
+  Session 4: Testing in Java — JUnit 5, AssertJ, Mockito
+  Session 5: Pattern Matching and Virtual Threads
   Session 6: Spring Framework & Dependency Injection
   Session 7: Spring AOP
   Session 8: Spring MVC
@@ -46,25 +46,29 @@ htmlAttrs:
 
 Modern Java → the Spring container → REST → shipped
 
+<!-- [[[
 ---
-src: ./slides/02-modern-java-types.md
+src: ./slides/01-oop-and-enterprise.md
+---
+]]] -->
+
+<!-- --- -->
+<!-- src: ./slides/02-modern-java-types.md -->
+<!-- --- -->
+
+---
+src: ./slides/03-build-tools-and-functional-java.md
 ---
 
 <!-- [[[
 ---
-src: ./slides/03-modern-java-functional.md
+src: ./slides/04-testing-junit-assertj-mockito.md
 ---
 ]]] -->
 
 <!-- [[[
 ---
-src: ./slides/04-testing-junit-mockito.md
----
-]]] -->
-
-<!-- [[[
----
-src: ./slides/05-maven-and-gradle.md
+src: ./slides/05-pattern-matching-and-concurrency.md
 ---
 ]]] -->
 

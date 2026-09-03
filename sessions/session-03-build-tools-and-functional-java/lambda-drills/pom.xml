@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The three coordinates. Together they name this project uniquely
+         in the world, and they are what another project would put in its
+         own <dependency> block to depend on you. -->
+    <groupId>com.sunrise</groupId>
+    <artifactId>lambda-drills</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Lambda and Stream Drills</name>
+    <description>
+        Rewrite working imperative code as lambdas and streams.
+        The tests tell you when you got it right.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- ================= TODO 1 =================
+             Tell the compiler which Java release to build for.
+
+             Add, on the next line:
+
+                 <maven.compiler.release>25</maven.compiler.release>
+
+             Leave it out and Maven builds for a very old Java. The
+             record in model/Employee.java will not compile, and the
+             error will talk about "release version 8" — that is this
+             property missing, not your code.
+             ========================================== -->
+
+        <junit.version>6.0.1</junit.version>
+        <surefire.version>3.5.4</surefire.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- ================= TODO 2 =================
+             Add JUnit 5, so the tests can compile and run.
+
+             Add, on the next line:
+
+                 <dependency>
+                     <groupId>org.junit.jupiter</groupId>
+                     <artifactId>junit-jupiter</artifactId>
+                     <version>${junit.version}</version>
+                     <scope>test</scope>
+                 </dependency>
+
+             Note the scope. `test` means: put this on the classpath
+             when compiling and running tests, and keep it out of the
+             jar you ship. Your users do not need your test library.
+             ========================================== -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Surefire is the plugin that runs your tests during
+                 the `test` phase. Without it pinned, you get whatever
+                 version your Maven happens to ship with. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
