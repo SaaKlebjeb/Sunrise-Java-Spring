@@ -5,6 +5,11 @@ dist
 *.log
 .DS_Store
 
+# Eclipse / m2e project metadata — this course is IntelliJ + Maven
+.classpath
+.project
+.settings/
+
 # Java build output
 *.class
 target/

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sunrise</groupId>
+    <artifactId>order-tests</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Order Processing — Testing Exercise</name>
+    <description>JUnit 5, AssertJ and Mockito against a small order-processing domain.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>25</maven.compiler.release>
+
+        <!-- Every version in one place. If one of these fails to resolve,
+             this block is the only thing you edit. -->
+        <junit.version>6.0.1</junit.version>
+        <assertj.version>3.27.3</assertj.version>
+        <mockito.version>5.15.2</mockito.version>
+        <surefire.version>3.5.4</surefire.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ================= TODO 1 =================
+             Add AssertJ, so `assertThat(...)` compiles.
+
+                 <dependency>
+                     <groupId>org.assertj</groupId>
+                     <artifactId>assertj-core</artifactId>
+                     <version>${assertj.version}</version>
+                     <scope>test</scope>
+                 </dependency>
+
+             Note the scope, and note that it is the same four lines you
+             wrote last session. That is the point: a testing library is
+             not special. It is a dependency.
+             ========================================== -->
+
+        <!-- ================= TODO 2 =================
+             Add Mockito.
+
+                 <dependency>
+                     <groupId>org.mockito</groupId>
+                     <artifactId>mockito-core</artifactId>
+                     <version>${mockito.version}</version>
+                     <scope>test</scope>
+                 </dependency>
+             ========================================== -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
