@@ -2,7 +2,7 @@
 
 Modern Java → the Spring container → REST APIs → shipped in a container.
 
-> **Sessions 1 to 4 are available now.** The rest of the course is being written and will land
+> **Sessions 1 to 5 are available now.** The rest of the course is being written and will land
 > here session by session.
 
 ---
@@ -61,6 +61,11 @@ sessions/session-04-testing-junit-assertj-mockito/
   ├── lecture.md
   ├── order-tests/    ← a Maven project: thirteen tests for you to write
   └── homework/       ← three behaviours nobody tested, and no instructions
+
+sessions/session-05-spring-core-di/
+  ├── lecture.md
+  ├── lending-desk/   ← a README and NOTHING ELSE. You generate the project and write every class
+  └── homework/       ← a second project, generated from scratch, six more checkpoints
 ```
 
 From Session 3 on, the exercise folder is named after the project inside it — the
@@ -73,7 +78,8 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | `.../examples/` | Programs demonstrated in class. Yours to replay, never graded |
 | `.../src/` | *(Sessions 1–2)* The exercise. Almost everything is written for you |
 | `.../src/Verify.java` | *(Sessions 1–2)* The checker. PASS/FAIL per check. **Don't edit it** |
-| `.../lambda-drills/`, `.../order-tests/` | *(Session 3 on)* The exercise, as a named Maven project |
+| `.../lambda-drills/`, `.../order-tests/` | *(Sessions 3–4)* The exercise, as a named Maven project |
+| `.../lending-desk/README.md` | *(Session 5)* A **guide, not a project.** You generate the project from `start.spring.io` and write every class yourself |
 | `.../<project>/pom.xml` | *(Session 3 on)* The Maven build. Sometimes it has TODOs for you |
 | `.../homework/` | A second exercise, in its own domain, done afterwards |
 | `slides/` | The slide decks, if you want to review what was on screen |
@@ -88,6 +94,31 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | [2](sessions/session-02-modern-java-types/lecture.md) | **Modern Java Types** — `var`, records, compact constructors, sealed types, text blocks | `VarLab`, `RecordAnatomy`, `SealedProof`, `TextBlockLab` | 24 + **26 homework** |
 | [3](sessions/session-03-build-tools-and-functional-java/lecture.md) | **Build Tools and Functional Java** — Maven, Gradle, lambdas, streams and collectors | — *(demos are typed live)* | 22 + **12 homework** |
 | [4](sessions/session-04-testing-junit-assertj-mockito/lecture.md) | **Testing in Java** — `Optional` catch-up, then JUnit 5, AssertJ, Mockito, and why a green suite proves nothing | — | 13 tests, then 3 more |
+| [5](sessions/session-05-spring-core-di/lecture.md) | **Spring Framework & Dependency Injection** — the container, what Spring Boot adds, generating your own project, stereotypes and the root package rule, constructor injection, scopes and lifecycle, two beans of one interface | — *(demos are typed live)* | 7 checkpoints + **6 homework** |
+
+---
+
+## What is coming
+
+Planned in September 2026, not yet written. The shape is settled; the material is not.
+
+| Session | Topic |
+|---|---|
+| 6 | **Cross-cutting concerns and your first endpoint** — aspects, proxies, self-invocation, and then a web face on the lending desk so your own aspect starts logging real HTTP requests |
+| 7 | **Spring MVC** — what actually happened when that request arrived |
+| 8 | **Spring Boot & Lombok** — an audit of the thing you have been running since Session 5 |
+| 9–10 | **REST** — resource design, controllers, validation, error shape |
+| 11 | **How a request gets authorised** — the filter chain, users and roles, `@PreAuthorize` |
+| 12–13 | **Docker, then Git and CI/CD** |
+| 14 | **Capstone** — Inventory Management System |
+
+Two things worth knowing now:
+
+- **You keep `lending-desk`.** Sessions 6, 7 and 8 all build on the project you generate in
+  Session 5. Do not delete it, and finish its checkpoints even if you run out of time in class.
+- **Session 11 is a subset of Spring Security, on purpose.** It gets you as far as protecting
+  endpoints and methods. JWT, OAuth2, CORS and CSRF are a separate course, and the session says
+  so out loud rather than letting you think you are done.
 
 ---
 
@@ -108,7 +139,14 @@ Lambdas and streams moved forward with it because they give you something worth 
 because they are what the drills in that session practise.
 
 **Then, in September 2026, pattern matching and virtual threads were cut** to give Spring the
-slot. The course is 13 sessions now, and Module 1 ends after testing.
+slot, and Module 1 ends after testing.
+
+**Later in September the Spring half was reshaped again.** Session 5 used to build a container by
+hand and meet Spring Boot for eight minutes at the end; it now teaches the container, then what
+Boot adds, then has you generate your own project before the break — and everything after that
+happens inside it. Spring Boot's generator moved out of Session 6 to make room. The course is
+**14 sessions**: a spare slot was given to security, so you finish able to protect an endpoint
+rather than only able to build one.
 
 **One consequence, stated honestly.** Session 2 ends by promising that the `instanceof` chain
 and its unreachable `throw` get deleted "next session". They do not, in this course. Look up
@@ -156,9 +194,9 @@ code is and what it depends on.
 | A Maven phase | The **Maven** tool window (right-hand edge) → **Lifecycle** |
 
 The demo programs in `examples/` still run as single files — `java RecordAnatomy.java` —
-because they have no dependencies. **Sessions 3 and 4 have no `examples/` folder**: Session 3's
-two demonstrations are typed live in the session, and Session 4 has no demo at all. The lecture
-carries those points in full.
+because they have no dependencies. **Sessions 3, 4 and 5 have no `examples/` folder**: the
+demonstrations in Sessions 3 and 5 are typed live in the session, and Session 4 has no demo at
+all. The lecture carries those points in full.
 
 ---
 
@@ -176,9 +214,9 @@ during the session — you don't need to run them yourself while reading. They s
 `examples/` so you can replay any of them later, when a point has gone fuzzy. Predict the
 output before you look.
 
-Sessions 3 and 4 have no `examples/` folder: Session 3's two demonstrations are typed live so
-you watch the compiler react, and Session 4 has no demo at all — its arguments are made in
-prose and on the slides.
+Sessions 3, 4 and 5 have no `examples/` folder: the demonstrations in Sessions 3 and 5 are
+typed live so you watch the compiler — and the container — react, and Session 4 has no demo at
+all; its arguments are made in prose and on the slides.
 
 **3. Do the exercise.** It is in `src/` for Sessions 1–2, and in the session's named Maven
 project folder from Session 3 on.
@@ -246,6 +284,24 @@ Mockito. The first means a `verify` did not happen — usually you stubbed a dif
 than the test needs. The second means you stubbed a call the code never makes, usually a
 `when(...)` copy-pasted from the test above.
 
+**`NoSuchBeanDefinitionException` for a class you definitely annotated.** *(Session 5)*
+The container never scanned it. `@SpringBootApplication` scans **its own package and everything
+underneath**, so a class outside that tree is invisible — and the message says nothing at all
+about packages. Check where the file lives before you check the annotation.
+
+**A wall of red before any of your own code runs.** *(Session 5)*
+Normal. A container that will not start takes the whole application down, so one missing
+annotation looks like everything being broken. It is **one** problem. Read one message, scroll to
+`Caused by:` and read the innermost line, fix the cause, run again.
+
+**The app starts, prints the banner, and exits.** *(Session 5)*
+Not a failure. With no web starter there is nothing to keep it alive. If it printed nothing of
+yours, your `CommandLineRunner` is not a bean — or it is outside the root package.
+
+**`NoUniqueBeanDefinitionException: expected single matching bean but found 2`.** *(Session 5)*
+Two beans implement one interface and nothing broke the tie. **Read the message — it names both
+candidates.** You want `@Primary` on the default one, or `@Qualifier` at the injection point.
+
 **IntelliJ shows no green arrows and doesn't recognise your own classes.** *(Session 3 on)*
 You opened the folder instead of the `pom.xml`. Close the project and re-open the POM itself.
 
@@ -280,5 +336,5 @@ taught. If you want a different one, swap which `src:` line is uncommented.
 
 ## Versions
 
-**Java 25 · Maven.** Later sessions add **Spring Boot 4.0.3**. Gradle is shown once, for
+**Java 25 · Maven.** Later sessions add **Spring Boot 4.0.8**. Gradle is shown once, for
 comparison; everything built here uses Maven. Don't mix versions.

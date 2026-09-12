@@ -30,7 +30,7 @@ info: |
   Session 12: Git, GitLab & CI/CD
   Session 13: Capstone — Inventory Management System
 
-  Java 25 · Spring Boot 4.0.3 · Maven
+  Java 25 · Spring Boot 4.0.8 · Maven
 keywords: Java, Spring, Spring Boot, REST, Dependency Injection, AOP, Spring MVC, Docker, GitLab CI
 author: Sunrise Java Course
 description: Modern Java to a containerized Spring Boot REST API, with self-verifying exercises.
@@ -59,25 +59,20 @@ src: ./slides/01-oop-and-enterprise.md
 <!-- src: ./slides/03-build-tools-and-functional-java.md -->
 <!-- --- -->
 
----
-src: ./slides/04-testing-junit-assertj-mockito.md
----
+<!-- --- -->
+<!-- src: ./slides/04-testing-junit-assertj-mockito.md -->
+<!-- --- -->
 
-<!-- [[[
 ---
 layout: center
 ---
 
 # Module 2 — The Spring Framework
 
-Sessions 5–8 · The container, the proxies, and Boot
-]]] -->
 
-<!-- [[[
 ---
 src: ./slides/05-spring-core-di.md
 ---
-]]] -->
 
 <!-- [[[
 ---
