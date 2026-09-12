@@ -19,11 +19,11 @@ public final class SampleData {
                 new Employee(1, "Alice", "Engineering", 85000, 5, "Phnom Penh"),
                 new Employee(2, "Bob", "Engineering", 72000, 3, "Siem Reap"),
                 new Employee(3, "Charlie", "HR", 55000, 2, "Phnom Penh"),
-                new Employee(4, "Diana", "Engineering", 95000, 8, "Battambang"),
+                new Employee(4, "Diana", "English", 95000, 8, "Battambang"),
                 new Employee(5, "Eve", "Marketing", 62000, 4, "Phnom Penh"),
                 new Employee(6, "Frank", "HR", 58000, 6, "Siem Reap"),
                 new Employee(7, "Grace", "Marketing", 67000, 3, "Battambang"),
-                new Employee(8, "Henry", "Engineering", 110000, 10, "Phnom Penh"),
+                new Employee(8, "Henry", "English", 110000, 10, "Phnom Penh"),
                 new Employee(9, "Ivy", "Marketing", 48000, 1, "Siem Reap"),
                 new Employee(10, "Jack", "HR", 52000, 2, "Phnom Penh"));
     }

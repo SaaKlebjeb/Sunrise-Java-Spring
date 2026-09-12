@@ -30,7 +30,7 @@ public class RecordAnatomy {
     //     record Order(String customerEmail, double total) { }
     //
     // The compact constructor below is section 2. The one line is the base.
-    record Order(String customerEmail, double total) {
+    record Order(String customerEmail, double totalf) {
         Order {
             if (total < 0) throw new IllegalArgumentException("total cannot be negative");
             customerEmail = customerEmail.trim().toLowerCase();

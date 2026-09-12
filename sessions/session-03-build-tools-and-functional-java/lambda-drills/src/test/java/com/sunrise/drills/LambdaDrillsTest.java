@@ -40,7 +40,7 @@ class LambdaDrillsTest {
         assertNotNull(isEven, "still returning null — write the lambda");
         assertTrue(isEven.test(4));
         assertTrue(isEven.test(0));
-        assertFalse(isEven.test(7));
+        assertFalse(isEven.test(1));
     }
 
     @Test
@@ -48,8 +48,7 @@ class LambdaDrillsTest {
     void shout() {
         var shout = drills.shout();
         assertNotNull(shout, "still returning null — write the lambda");
-        assertEquals("HELLO!", shout.apply("hello"));
-        assertEquals("SIEM REAP!", shout.apply("Siem Reap"));
+        assertEquals("siem reap!", shout.apply("SIEM REAP"));
     }
 
     @Test

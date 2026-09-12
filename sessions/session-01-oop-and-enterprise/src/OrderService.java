@@ -37,10 +37,14 @@
 public class OrderService {
 
     // TODO (EDIT 1): replace these two lines with interface-typed final fields
-    private final MySqlOrderRepository repository = new MySqlOrderRepository();
-    private final SmtpOrderEmailSender emailSender = new SmtpOrderEmailSender();
+    private final OrderRepository repository;
+    private final EmailSender emailSender;
 
     // TODO (EDIT 2): add the constructor here
+    public OrderService(OrderRepository repository,EmailSender emailSender){
+        this.repository = repository;
+        this.emailSender =emailSender;
+    }
 
 
     // Unchanged. This method is already correct and stays exactly as it is.

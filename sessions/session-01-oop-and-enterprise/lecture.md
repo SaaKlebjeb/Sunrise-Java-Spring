@@ -139,7 +139,6 @@ public interface OrderRepository {
     void save(Order order);
 }
 ```
-
 Read what this does *not* say. No MySQL. No SQL, connections, tables, transactions. It names a capability — *somewhere to put an order* — and stops. Those other things are details of **one way** of keeping the promise.
 
 The value shows when there is more than one way:

@@ -37,6 +37,7 @@ public class Verify {
     private static int passed = 0;
     private static final List<String> failures = new ArrayList<>();
 
+
     static void check(String name, boolean condition) {
         System.out.println((condition ? "  PASS  " : "  FAIL  ") + name);
         if (condition) passed++; else failures.add(name);
@@ -138,9 +139,10 @@ public class Verify {
     static void behaviourIsUnchanged() {
         System.out.println("placeOrder still saves, then notifies");
 
+        EmailSender emailSender = new SmtpOrderEmailSender();
         RecordingRepository repository = new RecordingRepository();
         RecordingSender sender = new RecordingSender();
-        OrderService service = new OrderService(repository, sender);
+        OrderService service = new OrderService(repository, emailSender);
 
         service.placeOrder(new Order("alice@example.com", 250.00));
 

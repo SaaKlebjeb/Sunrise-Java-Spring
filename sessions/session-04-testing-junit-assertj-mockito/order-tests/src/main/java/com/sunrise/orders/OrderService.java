@@ -12,12 +12,12 @@ package com.sunrise.orders;
  */
 public class OrderService {
 
-    private final PaymentGateway gateway;
-    private final OrderRepository repository;
-    private final EmailSender emailSender;
+    private final com.sunrise.orders.PaymentGateway gateway;
+    private final com.sunrise.orders.OrderRepository repository;
+    private final com.sunrise.orders.EmailSender emailSender;
 
-    public OrderService(PaymentGateway gateway,
-                        OrderRepository repository,
+    public OrderService(com.sunrise.orders.PaymentGateway gateway,
+                        com.sunrise.orders.OrderRepository repository,
                         EmailSender emailSender) {
         this.gateway = gateway;
         this.repository = repository;

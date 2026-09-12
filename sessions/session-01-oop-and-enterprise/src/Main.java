@@ -23,11 +23,11 @@ public class Main {
         //  it stops you accidentally using a MySQL-only method later.
         // --------------------------------------------------------------
 
-        // OrderRepository repository  = new MySqlOrderRepository();
-        // EmailSender     emailSender = new SmtpOrderEmailSender();
-        //
-        // OrderService service = new OrderService(repository, emailSender);
-        // service.placeOrder(new Order("alice@example.com", 250.00));
+         OrderRepository repository  = new MySqlOrderRepository();
+         EmailSender     emailSender = new SmtpOrderEmailSender();
+
+         OrderService service = new OrderService(repository, emailSender);
+         service.placeOrder(new Order("alice@example.com", 250.00));
 
         // Expected output so far:
         //   [MySQL] Saving order for alice@example.com totalling $250.00
@@ -41,9 +41,9 @@ public class Main {
         //  reusing the same email sender.
         // --------------------------------------------------------------
 
-        // OrderRepository memory = new InMemoryOrderRepository();
-        // OrderService memoryService = new OrderService(memory, emailSender);
-        // memoryService.placeOrder(new Order("bob@example.com", 99.00));
+         OrderRepository memory = new InMemoryOrderRepository();
+         OrderService memoryService = new OrderService(memory, emailSender);
+         memoryService.placeOrder(new Order("bob@example.com", 99.00));
 
         // Expected additional output:
         //   [Memory] Stored order 1 for bob@example.com

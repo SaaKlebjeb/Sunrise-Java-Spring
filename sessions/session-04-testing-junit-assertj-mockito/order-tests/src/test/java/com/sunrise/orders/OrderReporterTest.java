@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.within;
 @DisplayName("OrderReporter")
 class OrderReporterTest {
 
-    private OrderReporter reporter;
+    private OrderReport reporter;
     private List<Order> orders;
 
     @BeforeEach

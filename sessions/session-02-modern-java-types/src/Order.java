@@ -23,3 +23,8 @@ public record Order(String customerEmail, double total) {
         return new Order(customerEmail, total * (1 - percent / 100));
     }
 }
+public record Order(String customerEmail, double total) {
+    Order{
+
+    }
+}
