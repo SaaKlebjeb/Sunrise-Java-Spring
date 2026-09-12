@@ -23,18 +23,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- ================= TODO 1 =================
-             Tell the compiler which Java release to build for.
-
-             Add, on the next line:
-
-                 <maven.compiler.release>25</maven.compiler.release>
-
-             Leave it out and Maven builds for a very old Java. The
-             record in model/Employee.java will not compile, and the
-             error will talk about "release version 8" — that is this
-             property missing, not your code.
-             ========================================== -->
+        <maven.compiler.release>25</maven.compiler.release>
 
         <junit.version>6.0.1</junit.version>
         <surefire.version>3.5.4</surefire.version>
@@ -42,22 +31,12 @@
 
     <dependencies>
 
-        <!-- ================= TODO 2 =================
-             Add JUnit 5, so the tests can compile and run.
-
-             Add, on the next line:
-
-                 <dependency>
-                     <groupId>org.junit.jupiter</groupId>
-                     <artifactId>junit-jupiter</artifactId>
-                     <version>${junit.version}</version>
-                     <scope>test</scope>
-                 </dependency>
-
-             Note the scope. `test` means: put this on the classpath
-             when compiling and running tests, and keep it out of the
-             jar you ship. Your users do not need your test library.
-             ========================================== -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

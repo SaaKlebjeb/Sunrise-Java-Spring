@@ -7,24 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
- * ============================================================
- * PART ONE — testing a value type
- * ============================================================
- * Two tests are written for you. They are the two shapes you
- * need for everything else in this file:
- *
- *   - assertThat(...)          for "it produced this"
- *   - assertThatThrownBy(...)  for "it refused"
- *
- * Write the five marked TODO. Each one currently calls
- * fail(...), so the suite is RED until you write it — delete
- * that line as you go. Keep the Arrange / Act / Assert shape
- * and the blank lines between them — a test you can read in
- * three seconds is worth more than a clever one.
- * ============================================================
+ * REFERENCE SOLUTION — 7 class tests (2 given + 5 written) and 2 homework tests.
  */
 @DisplayName("Order")
 class OrderTest {
@@ -33,7 +18,6 @@ class OrderTest {
     @DisplayName("when it is built")
     class Construction {
 
-        // ---- GIVEN, as a model. Do not change it. ----
         @Test
         @DisplayName("keeps the values it was given")
         void keepsItsValues() {
@@ -47,9 +31,18 @@ class OrderTest {
         @Test
         @DisplayName("trims and lower-cases the email")
         void normalisesTheEmail() {
-            // TODO: build an Order with "  CHAN@Example.COM  " as the email
-            //       and assert that customerEmail() comes back "chan@example.com".
-            fail("TODO: write this test");
+            Order order = new Order("  CHAN@Example.COM  ", 10.00, 1);
+
+            assertThat(order.customerEmail()).isEqualTo("chan@example.com");
+        }
+
+        // HOMEWORK 3 — pins down what is ALLOWED. Goes red if `total < 0` becomes `total <= 0`.
+        @Test
+        @DisplayName("accepts an order that is legitimately free")
+        void acceptsAFreeOrder() {
+            Order order = new Order("chan@example.com", 0.00, 1);
+
+            assertThat(order.total()).isEqualTo(0.00, within(0.001));
         }
     }
 
@@ -57,7 +50,6 @@ class OrderTest {
     @DisplayName("when the arguments are wrong")
     class Validation {
 
-        // ---- GIVEN, as a model. Do not change it. ----
         @Test
         @DisplayName("rejects an email with no @")
         void rejectsEmailWithoutAt() {
@@ -69,15 +61,17 @@ class OrderTest {
         @Test
         @DisplayName("rejects a negative total")
         void rejectsNegativeTotal() {
-            // TODO: same shape as above. Assert the message mentions "total".
-            fail("TODO: write this test");
+            assertThatThrownBy(() -> new Order("chan@example.com", -0.01, 1))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("total");
         }
 
         @Test
         @DisplayName("rejects a quantity below one")
         void rejectsZeroQuantity() {
-            // TODO: same shape again.
-            fail("TODO: write this test");
+            assertThatThrownBy(() -> new Order("chan@example.com", 10.00, 0))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("quantity");
         }
     }
 
@@ -88,18 +82,33 @@ class OrderTest {
         @Test
         @DisplayName("takes the percentage off the total")
         void takesThePercentageOff() {
-            // TODO: 10% off an order of 200.00 is 180.00.
-            //       Compare doubles with within(0.001), never with ==.
-            fail("TODO: write this test");
+            Order order = new Order("chan@example.com", 200.00, 1);
+
+            Order discounted = order.withDiscount(10);
+
+            assertThat(discounted.total()).isEqualTo(180.00, within(0.001));
         }
 
         @Test
         @DisplayName("leaves the original untouched")
         void leavesTheOriginalAlone() {
-            // TODO: call withDiscount and then assert the ORIGINAL order's
-            //       total is still what it was. This is the test that proves
-            //       the record is immutable rather than assuming it.
-            fail("TODO: write this test");
+            Order order = new Order("chan@example.com", 200.00, 1);
+
+            order.withDiscount(10);
+
+            assertThat(order.total()).isEqualTo(200.00, within(0.001));
+        }
+
+        // HOMEWORK 1 — a negative percentage, because withDiscount(150) still throws with the
+        // guard deleted: the constructor refuses the negative total it produces.
+        @Test
+        @DisplayName("rejects a percentage outside 0 to 100")
+        void rejectsAnInvalidPercentage() {
+            Order order = new Order("chan@example.com", 200.00, 1);
+
+            assertThatThrownBy(() -> order.withDiscount(-10))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("percent");
         }
     }
 }

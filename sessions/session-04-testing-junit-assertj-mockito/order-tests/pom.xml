@@ -24,7 +24,42 @@
         <assertj.version>3.27.3</assertj.version>
         <mockito.version>5.15.2</mockito.version>
         <surefire.version>3.5.4</surefire.version>
+        <byte-buddy.version>1.17.8</byte-buddy.version>
     </properties>
+
+    <!-- Why Byte Buddy is pinned here
+
+         Mockito does not write mock classes itself. It asks a library called
+         Byte Buddy to generate them while the tests run. Mockito brings its
+         own Byte Buddy, but every Mockito release up to 5.23.0 brings one
+         that cannot read Java 25 class files, so every test that calls
+         mock(...) fails with:
+
+           Java 25 (69) is not supported by the current version of Byte Buddy
+
+         This block adds no dependency. It only says: whenever anything asks
+         for Byte Buddy, use 1.17.8, the first version that reads Java 25.
+         Delete it once a Mockito release brings 1.17.8 or newer itself.
+
+         Maven must also RUN on JDK 25. Check that `mvn -v` prints
+         "Java version: 25". IntelliJ runs tests on its own project JDK, so a
+         test can pass there while `mvn test` in a terminal still picks up an
+         older system Java and fails before any test starts. -->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy-agent</artifactId>
+                <version>${byte-buddy.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 
@@ -35,31 +70,19 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ================= TODO 1 =================
-             Add AssertJ, so `assertThat(...)` compiles.
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-                 <dependency>
-                     <groupId>org.assertj</groupId>
-                     <artifactId>assertj-core</artifactId>
-                     <version>${assertj.version}</version>
-                     <scope>test</scope>
-                 </dependency>
-
-             Note the scope, and note that it is the same four lines you
-             wrote last session. That is the point: a testing library is
-             not special. It is a dependency.
-             ========================================== -->
-
-        <!-- ================= TODO 2 =================
-             Add Mockito.
-
-                 <dependency>
-                     <groupId>org.mockito</groupId>
-                     <artifactId>mockito-core</artifactId>
-                     <version>${mockito.version}</version>
-                     <scope>test</scope>
-                 </dependency>
-             ========================================== -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
