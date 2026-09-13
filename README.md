@@ -95,30 +95,7 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | [3](sessions/session-03-build-tools-and-functional-java/lecture.md) | **Build Tools and Functional Java** — Maven, Gradle, lambdas, streams and collectors | — *(demos are typed live)* | 22 + **12 homework** |
 | [4](sessions/session-04-testing-junit-assertj-mockito/lecture.md) | **Testing in Java** — `Optional` catch-up, then JUnit 5, AssertJ, Mockito, and why a green suite proves nothing | — | 13 tests, then 3 more |
 | [5](sessions/session-05-spring-core-di/lecture.md) | **Spring Framework & Dependency Injection** — the container, what Spring Boot adds, generating your own project, stereotypes and the root package rule, constructor injection, scopes and lifecycle, two beans of one interface | — *(demos are typed live)* | 7 checkpoints + **6 homework** |
-
----
-
-## What is coming
-
-Planned in September 2026, not yet written. The shape is settled; the material is not.
-
-| Session | Topic |
-|---|---|
-| 6 | **Cross-cutting concerns and your first endpoint** — aspects, proxies, self-invocation, and then a web face on the lending desk so your own aspect starts logging real HTTP requests |
-| 7 | **Spring MVC** — what actually happened when that request arrived |
-| 8 | **Spring Boot & Lombok** — an audit of the thing you have been running since Session 5 |
-| 9–10 | **REST** — resource design, controllers, validation, error shape |
-| 11 | **How a request gets authorised** — the filter chain, users and roles, `@PreAuthorize` |
-| 12–13 | **Docker, then Git and CI/CD** |
-| 14 | **Capstone** — Inventory Management System |
-
-Two things worth knowing now:
-
-- **You keep `lending-desk`.** Sessions 6, 7 and 8 all build on the project you generate in
-  Session 5. Do not delete it, and finish its checkpoints even if you run out of time in class.
-- **Session 11 is a subset of Spring Security, on purpose.** It gets you as far as protecting
-  endpoints and methods. JWT, OAuth2, CORS and CSRF are a separate course, and the session says
-  so out loud rather than letting you think you are done.
+| [6](sessions/session-06-spring-mvc/lecture.md) | **Spring MVC** — one starter and a server nobody configured, the `DispatcherServlet`, how a URL finds your method, resolvers and message converters, the request lifecycle, thread-per-request, `MockMvc` and the `@WebMvcTest` slice | `mvn test` | 9 tests + **6 homework** |
 
 ---
 
@@ -147,6 +124,13 @@ Boot adds, then has you generate your own project before the break — and every
 happens inside it. Spring Boot's generator moved out of Session 6 to make room. The course is
 **14 sessions**: a spare slot was given to security, so you finish able to protect an endpoint
 rather than only able to build one.
+
+**And on 12 September the Spring half was reordered once more.** Spring AOP used to be Session 6;
+it is now Session 10, and the web layer took its place. The reason is worth knowing because it
+applies to how you learn anything: at Session 6 you would have had nothing for an aspect to cut
+across — no controllers, no DTOs, no real service layer — so every worked example would have been
+a promise about a later session. By Session 10 you have all three, and `@Transactional`,
+`@Cacheable` and `@PreAuthorize` are things you have used rather than things you are told about.
 
 **One consequence, stated honestly.** Session 2 ends by promising that the `instanceof` chain
 and its unreachable `throw` get deleted "next session". They do not, in this course. Look up

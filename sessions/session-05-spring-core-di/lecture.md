@@ -8,7 +8,7 @@
 
 - You need Maven and a browser. Today you generate your own project rather than opening one that was handed to you.
 - **Network access.** You will download a project from `start.spring.io` and let Maven fetch its dependencies once.
-- **Java 25 · Spring Boot 4.0.8 · Maven.** Do not mix versions.
+- **Java 25 · Spring Boot 4.1.1 · Maven.** Do not mix versions.
 - **A new domain starts here: library lending.** Nothing from the order-processing exercises carries over except the habits.
 - **You start from an empty package.** There is no skeleton to fill in. The exercise tells you what each class must do and what the program must print. Each checkpoint also ends with the code in a folded block — open it when you are stuck on Java, because the wiring is the lesson and the plumbing is not.
 
@@ -154,7 +154,7 @@ Boot is four ideas. Learn the names now; three of them you will use before the b
 
 ### Starters
 
-A **starter** is a dependency that exists only to pull in other dependencies. `spring-boot-starter-web` contains almost no code — it declares that a web application needs Spring MVC, Jackson, a validator and an embedded Tomcat, at versions known to work together.
+A **starter** is a dependency that exists only to pull in other dependencies. `spring-boot-starter-webmvc` contains almost no code — it declares that a web application needs Spring MVC, Jackson, a validator and an embedded Tomcat, at versions known to work together.
 
 You add one line and get a working set instead of a research project.
 
@@ -164,13 +164,13 @@ You add one line and get a working set instead of a research project.
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.0.8</version>
+    <version>4.1.1</version>
 </parent>
 ```
 
 Remember the `<properties>` block you wrote by hand for JUnit, AssertJ and Mockito — one version number each, and it was your job to know they were compatible? The parent is that block, maintained by the Spring team, for several hundred libraries.
 
-**The consequence you will see in ten minutes: your `pom.xml` will name almost no versions.** When you add `spring-boot-starter-web` you write a `groupId` and an `artifactId` and stop. The version comes from the parent. That is not the generator being clever; it is ordinary Maven dependency management, and you already know how it works.
+**The consequence you will see in ten minutes: your `pom.xml` will name almost no versions.** When you add `spring-boot-starter-webmvc` you write a `groupId` and an `artifactId` and stop. The version comes from the parent. That is not the generator being clever; it is ordinary Maven dependency management, and you already know how it works.
 
 ### `@SpringBootApplication`
 
@@ -208,11 +208,11 @@ Open [start.spring.io](https://start.spring.io). This is the **Spring Initializr
 |---|---|---|
 | **Project** | Maven | You wrote a POM by hand two sessions ago. Stay on the tool you can read |
 | **Language** | Java | — |
-| **Spring Boot** | **4.0.8** | The pinned version for this course. Not a `SNAPSHOT`, not an `M` or `RC` build — those are pre-releases |
+| **Spring Boot** | **4.1.1** | The pinned version for this course. Not a `SNAPSHOT`, not an `M` or `RC` build — those are pre-releases |
 | **Group** | `com.sunrise` | Reversed domain, exactly as in the sessions on Maven |
 | **Artifact** | `lending-desk` | The project's name. Becomes the folder and the jar |
 | **Name** | `lending-desk` | Fills itself in |
-| **Package name** | `com.sunrise.lendingdesk` | **Remember this string.** It matters more than it looks |
+| **Package name** | `com.sunrise.lendingdesk` | **Remember this string.** It matters more than it looks. The form auto-fills `com.sunrise.lending_desk` from the artifact — type over it |
 | **Packaging** | Jar | The application embeds its own server, so it is a jar, not a war |
 | **Java** | **25** | Match your JDK, or nothing will compile |
 | **Dependencies** | *see below* | — |
@@ -243,7 +243,7 @@ Four things arrived. Look at each one; none of it is unfamiliar.
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.0.8</version>
+    <version>4.1.1</version>
 </parent>
 
 <properties>

@@ -18,10 +18,10 @@ clean.
 |---|---|
 | Project | Maven |
 | Language | Java |
-| Spring Boot | **4.0.8** |
+| Spring Boot | **4.1.1** |
 | Group | `com.sunrise` |
 | Artifact | `catalogue-service` |
-| Package name | `com.sunrise.catalogueservice` |
+| Package name | `com.sunrise.catalogueservice` — type it, the form auto-fills `catalogue_service` |
 | Packaging | Jar |
 | Java | **25** |
 | Dependencies | **none** |
@@ -215,6 +215,5 @@ is the honest answer to "what does a starter do".
 
 ## A note on where this goes
 
-Keep both projects. The next session builds directly on `lending-desk` — you will add an aspect
-to the service you wired, and the first thing it explains is what was intercepting that `@Bean`
-method call.
+Keep both projects. The next session builds directly on `lending-desk` — the service you wired
+grows a web layer, and the first request that reaches it arrives on a thread you did not start.

@@ -3,9 +3,13 @@
 **Seven checkpoints. No skeleton and no `TODO` markers — but every checkpoint ends with the
 code, folded away, so that being stuck on Java never costs you the concept.**
 
-This folder contains a README and nothing else. The project you are building is the one you
-generated from `start.spring.io` before the break: **`lending-desk`**, group `com.sunrise`,
-package `com.sunrise.lendingdesk`, Java 25, Spring Boot 4.0.8, **no dependencies ticked**.
+The project you are building is the one you generated from `start.spring.io` before the break:
+**`lending-desk`**, group `com.sunrise`, package `com.sunrise.lendingdesk`, Java 25,
+Spring Boot 4.1.1, **no dependencies ticked**.
+
+**Type the package name in yourself.** The form fills that field from the artifact and hands you
+`com.sunrise.lending_desk`, with an underscore. Every path in this README says `lendingdesk`, and
+a project built on the other spelling matches none of them.
 
 If you did not generate it, or you ticked something and want to start clean, generating it
 again takes ninety seconds. Do that rather than patching a project you are unsure about.
