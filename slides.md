@@ -13,22 +13,23 @@ themeConfig:
 info: |
   ## Java Enterprise Spring Framework — Core
 
-  13 sessions · Intermediate
+  14 sessions · Intermediate
 
   Session 1: Java OOP & the Enterprise Context
   Session 2: Modern Java Types — var, records, sealed types, text blocks
   Session 3: Build Tools and Functional Java — Maven, Gradle, lambdas, streams
   Session 4: Testing in Java — JUnit 5, AssertJ, Mockito
-  Session 5: Spring Framework & Dependency Injection
-  Session 6: Spring AOP
-  Session 7: Spring MVC
-  Session 8: Spring Boot & Lombok
-  Session 9: REST Principles & Controllers
-  Session 10: Validation, Errors & JSON Contracts
+  Session 5: Spring, Spring Boot & Dependency Injection
+  Session 6: Spring MVC — the web layer and your first endpoint
+  Session 7: REST Principles & Controllers
+  Session 8: Validation, Errors & JSON Contracts
+  Session 9: Spring Boot — auto-configuration, profiles, Lombok
+  Session 10: Spring AOP
   — persistence, security and documentation: see the companion courses —
-  Session 11: Docker
-  Session 12: Git, GitLab & CI/CD
-  Session 13: Capstone — Inventory Management System
+  Session 11: How a request gets authorised
+  Session 12: Docker
+  Session 13: Git, GitLab & CI/CD
+  Session 14: Capstone — Inventory Management System
 
   Java 25 · Spring Boot 4.0.8 · Maven
 keywords: Java, Spring, Spring Boot, REST, Dependency Injection, AOP, Spring MVC, Docker, GitLab CI
@@ -69,28 +70,16 @@ layout: center
 
 # Module 2 — The Spring Framework
 
+Sessions 5–6 · The container, and the web layer on top of it
+
+
+<!-- --- -->
+<!-- src: ./slides/05-spring-core-di.md -->
+<!-- --- -->
 
 ---
-src: ./slides/05-spring-core-di.md
+src: ./slides/06-spring-mvc.md
 ---
-
-<!-- [[[
----
-src: ./slides/06-spring-aop.md
----
-]]] -->
-
-<!-- [[[
----
-src: ./slides/07-spring-mvc.md
----
-]]] -->
-
-<!-- [[[
----
-src: ./slides/08-spring-boot-and-lombok.md
----
-]]] -->
 
 <!-- [[[
 ---
@@ -99,18 +88,40 @@ layout: center
 
 # Module 3 — Building REST APIs
 
-Sessions 9–10 · Resource design, validation, error shape
+Sessions 7–8 · Resource design, validation, error shape
 ]]] -->
 
 <!-- [[[
 ---
-src: ./slides/09-rest-and-controllers.md
+src: ./slides/07-rest-and-controllers.md
 ---
 ]]] -->
 
 <!-- [[[
 ---
-src: ./slides/10-validation-and-errors.md
+src: ./slides/08-validation-and-errors.md
+---
+]]] -->
+
+<!-- [[[
+---
+layout: center
+---
+
+# Module 4 — Under the Hood
+
+Sessions 9–10 · What has been doing all this for you
+]]] -->
+
+<!-- [[[
+---
+src: ./slides/09-spring-boot.md
+---
+]]] -->
+
+<!-- [[[
+---
+src: ./slides/10-spring-aop.md
 ---
 ]]] -->
 
@@ -123,7 +134,7 @@ layout: statement
 
 Next: **`sunrise-springdatajpa`** → **`sunrise-springsecurity`** → **`sunrise-spring-migration`**
 
-Come back for Sessions 11–13.
+Come back for Sessions 11–14.
 ]]] -->
 
 <!-- [[[
@@ -131,9 +142,9 @@ Come back for Sessions 11–13.
 layout: center
 ---
 
-# Module 4 — Shipping
+# Module 6 — Shipping
 
-Sessions 11–12 · Containers and pipelines
+Containers and pipelines
 ]]] -->
 
 <!-- [[[
@@ -153,9 +164,9 @@ src: ./slides/12-git-gitlab-cicd.md
 layout: center
 ---
 
-# Module 5 — Capstone
+# Module 7 — Capstone
 
-Session 13 · Inventory Management System
+Inventory Management System
 ]]] -->
 
 <!-- [[[

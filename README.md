@@ -95,7 +95,7 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | [3](sessions/session-03-build-tools-and-functional-java/lecture.md) | **Build Tools and Functional Java** — Maven, Gradle, lambdas, streams and collectors | — *(demos are typed live)* | 22 + **12 homework** |
 | [4](sessions/session-04-testing-junit-assertj-mockito/lecture.md) | **Testing in Java** — `Optional` catch-up, then JUnit 5, AssertJ, Mockito, and why a green suite proves nothing | — | 13 tests, then 3 more |
 | [5](sessions/session-05-spring-core-di/lecture.md) | **Spring Framework & Dependency Injection** — the container, what Spring Boot adds, generating your own project, stereotypes and the root package rule, constructor injection, scopes and lifecycle, two beans of one interface | — *(demos are typed live)* | 7 checkpoints + **6 homework** |
-| [6](sessions/session-06-spring-mvc/lecture.md) | **Spring MVC** — one starter and a server nobody configured, the `DispatcherServlet`, how a URL finds your method, resolvers and message converters, the request lifecycle, thread-per-request, `MockMvc` and the `@WebMvcTest` slice | `mvn test` | 9 tests + **6 homework** |
+| [6](sessions/session-06-spring-mvc/lecture.md) | **Spring MVC** — one starter and a server nobody configured, the `DispatcherServlet`, how a URL finds your method, resolvers and message converters, the request lifecycle, thread-per-request, `MockMvc` and the `@WebMvcTest` slice | `mvn test` | 9 tests · homework: draft your personal project |
 
 ---
 
