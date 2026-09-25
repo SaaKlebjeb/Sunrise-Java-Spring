@@ -2,7 +2,7 @@
 
 Modern Java → the Spring container → REST APIs → shipped in a container.
 
-> **Sessions 1 to 5 are available now.** The rest of the course is being written and will land
+> **Sessions 1 to 7 are available now.** The rest of the course is being written and will land
 > here session by session.
 
 ---
@@ -66,6 +66,15 @@ sessions/session-05-spring-core-di/
   ├── lecture.md
   ├── lending-desk/   ← a README and NOTHING ELSE. You generate the project and write every class
   └── homework/       ← a second project, generated from scratch, six more checkpoints
+
+sessions/session-06-spring-mvc/
+  ├── lecture.md
+  └── lending-desk/   ← a README and a src/test tree to copy into your Session 5 project
+
+sessions/session-07-rest-apis/
+  ├── lecture.md
+  └── recipe-api/     ← a README with every class and test in it. You generate the project in class —
+                        and KEEP it: the Recipe API is the project for the rest of the course
 ```
 
 From Session 3 on, the exercise folder is named after the project inside it — the
@@ -80,6 +89,7 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | `.../src/Verify.java` | *(Sessions 1–2)* The checker. PASS/FAIL per check. **Don't edit it** |
 | `.../lambda-drills/`, `.../order-tests/` | *(Sessions 3–4)* The exercise, as a named Maven project |
 | `.../lending-desk/README.md` | *(Session 5)* A **guide, not a project.** You generate the project from `start.spring.io` and write every class yourself |
+| `.../recipe-api/README.md` | *(Session 7)* A complete walkthrough, from generating the project to the last green test. Every class and every test is in it, to copy and run |
 | `.../<project>/pom.xml` | *(Session 3 on)* The Maven build. Sometimes it has TODOs for you |
 | `.../homework/` | A second exercise, in its own domain, done afterwards |
 | `slides/` | The slide decks, if you want to review what was on screen |
@@ -96,46 +106,7 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | [4](sessions/session-04-testing-junit-assertj-mockito/lecture.md) | **Testing in Java** — `Optional` catch-up, then JUnit 5, AssertJ, Mockito, and why a green suite proves nothing | — | 13 tests, then 3 more |
 | [5](sessions/session-05-spring-core-di/lecture.md) | **Spring Framework & Dependency Injection** — the container, what Spring Boot adds, generating your own project, stereotypes and the root package rule, constructor injection, scopes and lifecycle, two beans of one interface | — *(demos are typed live)* | 7 checkpoints + **6 homework** |
 | [6](sessions/session-06-spring-mvc/lecture.md) | **Spring MVC** — one starter and a server nobody configured, the `DispatcherServlet`, how a URL finds your method, resolvers and message converters, the request lifecycle, thread-per-request, `MockMvc` and the `@WebMvcTest` slice | `mvn test` | 9 tests · homework: draft your personal project |
-
----
-
-## How the sessions were reordered
-
-If you have an older copy of the plan, or you noticed Session 2 promising something that has
-not arrived: the order changed in August 2026, deliberately.
-
-**It used to be:** modern Java II (lambdas, streams, pattern matching) → testing → build tools.
-
-**It is now:** build tools + lambdas and streams → testing → the Spring container.
-
-**Why.** Testing was being taught before there was a build tool, which meant running JUnit
-through a hand-downloaded jar and a shell script — an arrangement nobody uses at work and one
-that teaches a student nothing they can reuse. Maven now arrives *first*, so the testing
-session is an ordinary Maven project with three dependencies, exactly like every real one.
-Lambdas and streams moved forward with it because they give you something worth testing, and
-because they are what the drills in that session practise.
-
-**Then, in September 2026, pattern matching and virtual threads were cut** to give Spring the
-slot, and Module 1 ends after testing.
-
-**Later in September the Spring half was reshaped again.** Session 5 used to build a container by
-hand and meet Spring Boot for eight minutes at the end; it now teaches the container, then what
-Boot adds, then has you generate your own project before the break — and everything after that
-happens inside it. Spring Boot's generator moved out of Session 6 to make room. The course is
-**14 sessions**: a spare slot was given to security, so you finish able to protect an endpoint
-rather than only able to build one.
-
-**And on 12 September the Spring half was reordered once more.** Spring AOP used to be Session 6;
-it is now Session 10, and the web layer took its place. The reason is worth knowing because it
-applies to how you learn anything: at Session 6 you would have had nothing for an aspect to cut
-across — no controllers, no DTOs, no real service layer — so every worked example would have been
-a promise about a later session. By Session 10 you have all three, and `@Transactional`,
-`@Cacheable` and `@PreAuthorize` are things you have used rather than things you are told about.
-
-**One consequence, stated honestly.** Session 2 ends by promising that the `instanceof` chain
-and its unreachable `throw` get deleted "next session". They do not, in this course. Look up
-`switch` pattern matching over a sealed interface on your own — the annoyance you felt writing
-that chain is exactly the argument for it, and it is an evening's reading.
+| [7](sessions/session-07-rest-apis/lecture.md) | **REST APIs — Design, Validation & Errors** — REST as constraints, resource URLs, safe and idempotent methods, status codes on purpose with `ResponseEntity`, controller → service → repository layers (service as interface + `Impl`), request and response DTOs, Bean Validation and `@Valid`, one error shape with `ProblemDetail` and `@RestControllerAdvice`. **Starts the Recipe API, which you keep until Session 13** | `mvn test`, `curl` | 14 tests, all given — copy, run, go green · no homework |
 
 ---
 
@@ -228,6 +199,12 @@ they're worth doing.
 if the in-class exercise went badly you can still do it cleanly. Read `homework/README.md`
 first.
 
+**From Session 7 there is no homework.** The in-class exercise is the whole deliverable; if it
+does not finish in the room, finish it in your own time. From Session 7 the exercise also
+**carries on** — Session 7 starts the Recipe API and every session up to 13 builds on it. If you
+fall behind, each session from 8 on ships a `starting-point/` holding where the previous session
+ended: copy it in and carry on.
+
 ---
 
 ## If something goes wrong
@@ -285,6 +262,22 @@ yours, your `CommandLineRunner` is not a bean — or it is outside the root pack
 **`NoUniqueBeanDefinitionException: expected single matching bean but found 2`.** *(Session 5)*
 Two beans implement one interface and nothing broke the tie. **Read the message — it names both
 candidates.** You want `@Primary` on the default one, or `@Qualifier` at the injection point.
+
+**Every test fails to compile with `package com.sunrise.recipeapi does not exist`.** *(Session 7)*
+Initializr filled the package name in from the artifact and gave you `com.sunrise.recipe_api`,
+with an underscore. Type over it when generating, or rename the package. One underscore breaks
+all fourteen tests.
+
+**Validation "doesn't work" — a blank field still gets `200` or `201`.** *(Session 7)*
+`@Valid` is missing from the controller parameter. The constraints on the record do nothing on
+their own. Check this first, always.
+
+**`internalNotes` shows up in a response.** *(Session 7)*
+Something still returns `Recipe` instead of `RecipeResponse`. No controller method should mention
+`Recipe` at all.
+
+**`415 Unsupported Media Type` from `curl`.** *(Session 7)*
+The request has no `Content-Type: application/json` header. Add `-H 'Content-Type: application/json'`.
 
 **IntelliJ shows no green arrows and doesn't recognise your own classes.** *(Session 3 on)*
 You opened the folder instead of the `pom.xml`. Close the project and re-open the POM itself.

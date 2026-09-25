@@ -21,11 +21,10 @@ info: |
   Session 4: Testing in Java — JUnit 5, AssertJ, Mockito
   Session 5: Spring, Spring Boot & Dependency Injection
   Session 6: Spring MVC — the web layer and your first endpoint
-  Session 7: REST Principles & Controllers
-  Session 8: Validation, Errors & JSON Contracts
-  Session 9: Spring Boot — auto-configuration, profiles, Lombok
-  Session 10: Spring AOP
-  — persistence, security and documentation: see the companion courses —
+  Session 7: REST APIs — design, validation & errors
+  Session 8: Spring Boot, Layers & Aspects
+  Session 9: Hibernate & JPA Mapping
+  Session 10: Spring Data JPA, Liquibase & Swagger
   Session 11: How a request gets authorised
   Session 12: Docker
   Session 13: Git, GitLab & CI/CD
@@ -64,44 +63,39 @@ src: ./slides/01-oop-and-enterprise.md
 <!-- src: ./slides/04-testing-junit-assertj-mockito.md -->
 <!-- --- -->
 
+<!-- [[[
 ---
 layout: center
 ---
 
 # Module 2 — The Spring Framework
 
-Sessions 5–6 · The container, and the web layer on top of it
+The container, and the web layer on top of it
+]]] -->
 
 
 <!-- --- -->
 <!-- src: ./slides/05-spring-core-di.md -->
 <!-- --- -->
 
+<!-- [[[
 ---
 src: ./slides/06-spring-mvc.md
 ---
+]]] -->
 
-<!-- [[[
 ---
 layout: center
 ---
 
 # Module 3 — Building REST APIs
 
-Sessions 7–8 · Resource design, validation, error shape
-]]] -->
+The Recipe API · Resource design, validation, error shape
 
-<!-- [[[
 ---
-src: ./slides/07-rest-and-controllers.md
+src: ./slides/07-rest-apis.md
 ---
-]]] -->
 
-<!-- [[[
----
-src: ./slides/08-validation-and-errors.md
----
-]]] -->
 
 <!-- [[[
 ---
@@ -110,31 +104,11 @@ layout: center
 
 # Module 4 — Under the Hood
 
-Sessions 9–10 · What has been doing all this for you
-]]] -->
+What has been doing all this for you
 
-<!-- [[[
 ---
-src: ./slides/09-spring-boot.md
+src: ./slides/08-boot-layers-and-aspects.md
 ---
-]]] -->
-
-<!-- [[[
----
-src: ./slides/10-spring-aop.md
----
-]]] -->
-
-<!-- [[[
----
-layout: statement
----
-
-# Pause here
-
-Next: **`sunrise-springdatajpa`** → **`sunrise-springsecurity`** → **`sunrise-spring-migration`**
-
-Come back for Sessions 11–14.
 ]]] -->
 
 <!-- [[[
@@ -142,7 +116,17 @@ Come back for Sessions 11–14.
 layout: center
 ---
 
-# Module 6 — Shipping
+# Module 5 — Persistence
+
+The Recipe API, backed by a database
+]]] -->
+
+<!-- [[[
+---
+layout: center
+---
+
+# Module 7 — Shipping
 
 Containers and pipelines
 ]]] -->
