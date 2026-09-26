@@ -1,5 +1,6 @@
-package com.sunrise.lendingdesk.web;
+package com.sunrise.lendingdesk;
 
+import com.sunrise.lendingdesk.controller.LendingController;
 import com.sunrise.lendingdesk.domain.Book;
 import com.sunrise.lendingdesk.domain.LendingResult;
 import com.sunrise.lendingdesk.repository.BookRepository;
@@ -102,7 +103,7 @@ class LendingControllerWebTest {
         when(lending.lend(eq("978-0132350884"), eq("sokha")))
                 .thenReturn(new LendingResult(true, "lent to sokha"));
 
-        mockMvc.perform(post("/loans")
+        mockMvc.perform(post("/loan")
                        .contentType(MediaType.APPLICATION_JSON)
                        .content("""
                                {"isbn": "978-0132350884", "member": "sokha"}
