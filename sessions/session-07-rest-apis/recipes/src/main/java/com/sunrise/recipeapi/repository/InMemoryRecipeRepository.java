@@ -1,6 +1,6 @@
-package com.sunrise.recipes.repository;
+package com.sunrise.recipeapi.repository;
 
-import com.sunrise.recipes.domain.Recipe;
+import com.sunrise.recipeapi.domain.Recipe;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 

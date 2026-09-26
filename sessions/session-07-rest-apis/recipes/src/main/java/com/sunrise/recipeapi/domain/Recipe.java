@@ -1,4 +1,4 @@
-package com.sunrise.recipes.domain;
+package com.sunrise.recipeapi.domain;
 
 import java.util.List;
 
