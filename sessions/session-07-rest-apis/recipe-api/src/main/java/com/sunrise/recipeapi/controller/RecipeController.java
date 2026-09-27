@@ -5,6 +5,7 @@ import com.sunrise.recipeapi.dto.CreateRecipeRequest;
 import com.sunrise.recipeapi.dto.RecipeResponse;
 import com.sunrise.recipeapi.service.RecipeService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -29,19 +30,14 @@ public class RecipeController {
 
   @GetMapping("/{id}")
   public ResponseEntity<RecipeResponse> getRecipeById(@PathVariable String id) {
-    Optional<Recipe> recipe = recipeService.findById(id);
-
-    if (recipe.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-
-    return ResponseEntity.ok(RecipeResponse.from(recipe.get()));
+    Recipe recipe = recipeService.findById(id);
+    return ResponseEntity.ok(RecipeResponse.from(recipe));
   }
 
   @PostMapping
-  public ResponseEntity<RecipeResponse> createRecipe(@RequestBody CreateRecipeRequest request) {
+  public ResponseEntity<RecipeResponse> createRecipe(@Validated @RequestBody CreateRecipeRequest request) {
     Recipe savedRecipe = recipeService.create(request.toRecipe());
-    return ResponseEntity.created(URI.create("/recipes" + savedRecipe.id())).body(RecipeResponse.from(savedRecipe));
+    return ResponseEntity.created(URI.create("/recipes/" + savedRecipe.id())).body(RecipeResponse.from(savedRecipe));
   }
 
   @DeleteMapping("/{id}")

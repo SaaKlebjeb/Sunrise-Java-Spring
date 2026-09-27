@@ -10,29 +10,31 @@ import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    private final RecipeRepository recipeRepository;
+  private final RecipeRepository recipeRepository;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
-    }
+  public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    this.recipeRepository = recipeRepository;
+  }
 
-    @Override
-    public List<Recipe> findAll(@RequestParam(value = "cuisine", defaultValue = "") String cuisine) {
-        return cuisine == null ? recipeRepository.findAll() : recipeRepository.findByCuisine(cuisine);
-    }
+  @Override
+  public List<Recipe> findAll(@RequestParam(value = "cuisine", defaultValue = "") String cuisine) {
+    return cuisine == null ? recipeRepository.findAll() : recipeRepository.findByCuisine(cuisine);
+  }
 
-    @Override
-    public Optional<Recipe> findById(String id) {
-        return recipeRepository.findById(id);
-    }
+  @Override
+  public Recipe findById(String id) {
+    return recipeRepository
+        .findById(id)
+        .orElseThrow(() -> new RecipeNotFoundException("recipe id: " + id + " not found"));
+  }
 
-    @Override
-    public Recipe create(Recipe recipe) {
-        return recipeRepository.save(recipe);
-    }
+  @Override
+  public Recipe create(Recipe recipe) {
+    return recipeRepository.save(recipe);
+  }
 
-    @Override
-    public void delete(String id) {
-        recipeRepository.deleteById(id);
-    }
+  @Override
+  public void delete(String id) {
+    recipeRepository.deleteById(id);
+  }
 }
