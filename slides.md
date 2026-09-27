@@ -84,6 +84,8 @@ src: ./slides/06-spring-mvc.md
 ---
 ]]] -->
 
+<!-- [[[
+
 ---
 layout: center
 ---
@@ -96,8 +98,8 @@ The Recipe API · Resource design, validation, error shape
 src: ./slides/07-rest-apis.md
 ---
 
+]]] -->
 
-<!-- [[[
 ---
 layout: center
 ---
@@ -109,7 +111,6 @@ What has been doing all this for you
 ---
 src: ./slides/08-boot-layers-and-aspects.md
 ---
-]]] -->
 
 <!-- [[[
 ---
