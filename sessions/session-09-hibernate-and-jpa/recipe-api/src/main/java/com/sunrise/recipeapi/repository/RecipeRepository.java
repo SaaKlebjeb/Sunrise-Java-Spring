@@ -1,14 +1,10 @@
 package com.sunrise.recipeapi.repository;
 
 import com.sunrise.recipeapi.domain.Recipe;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface RecipeRepository {
-    List<Recipe> findAll();
-    Optional<Recipe> findById(String id);
-    List<Recipe> findByCuisine(String cuisine);
-    Recipe save(Recipe recipe);
-    boolean deleteById(String id);
+public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+    List<Recipe> findByCuisineIgnoreCase(String cuisine);
 }

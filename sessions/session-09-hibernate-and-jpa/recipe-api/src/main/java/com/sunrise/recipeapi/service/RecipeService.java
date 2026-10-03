@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RecipeService {
     List<Recipe> findAll(String cuisine);
-    Recipe findById(String id);
+    Recipe findById(Long id);
     Recipe create(Recipe recipe);
-    void delete(String id);
+    void delete(Long id);
 }

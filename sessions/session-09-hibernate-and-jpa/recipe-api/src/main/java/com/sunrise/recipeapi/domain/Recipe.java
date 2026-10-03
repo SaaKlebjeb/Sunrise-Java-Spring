@@ -1,17 +1,42 @@
 package com.sunrise.recipeapi.domain;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public record Recipe(
-        String id,
-        String title,
-        String cuisine,
-        int minutes,
-        int servings,
-        List<String> ingredients,
-        String internalNotes
-) {
-    public Recipe withId(String newId) {
-        return new Recipe(newId, title, cuisine, minutes, servings, ingredients, internalNotes);
-    }
+@Entity
+@Table(name = "recipes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Recipe {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(nullable = false)
+  private String title;
+
+  @Column(nullable = false, length = 100)
+  private String cuisine;
+
+  private int minutes;
+  private int servings;
+
+
+  @Column(name = "internal_notes")
+  private String internalNotes;
+
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Ingredient> ingredients = new ArrayList<>();
+
+  public void addIngredient(String name) {
+    this.ingredients.add(new Ingredient(name, this));
+  }
 }

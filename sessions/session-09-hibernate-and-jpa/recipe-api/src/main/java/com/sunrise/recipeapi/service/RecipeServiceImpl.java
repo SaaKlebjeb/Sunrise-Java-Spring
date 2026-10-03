@@ -14,11 +14,11 @@ public class RecipeServiceImpl implements RecipeService {
 
   @Override
   public List<Recipe> findAll(String cuisine) {
-    return cuisine == null ? recipeRepository.findAll() : recipeRepository.findByCuisine(cuisine);
+    return cuisine == null ? recipeRepository.findAll() : recipeRepository.findByCuisineIgnoreCase(cuisine);
   }
 
   @Override
-  public Recipe findById(String id) {
+  public Recipe findById(Long id) {
     return recipeRepository
         .findById(id)
         .orElseThrow(() -> new RecipeNotFoundException("recipe id: " + id + " not found"));
@@ -30,7 +30,7 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
-  public void delete(String id) {
+  public void delete(Long id) {
     recipeRepository.deleteById(id);
   }
 }

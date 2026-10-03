@@ -28,7 +28,7 @@ public class RecipeController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<RecipeResponse> getRecipeById(@PathVariable String id) {
+  public ResponseEntity<RecipeResponse> getRecipeById(@PathVariable Long id) {
     Recipe recipe = recipeService.findById(id);
     return ResponseEntity.ok(recipeMapper.toRecipeResponse(recipe));
   }
@@ -37,12 +37,12 @@ public class RecipeController {
   public ResponseEntity<RecipeResponse> createRecipe(
       @Validated @RequestBody CreateRecipeRequest request) {
     Recipe savedRecipe = recipeService.create(recipeMapper.toRecipe(request));
-    return ResponseEntity.created(URI.create("/recipes/" + savedRecipe.id()))
+    return ResponseEntity.created(URI.create("/recipes/" + savedRecipe.getId()))
         .body(recipeMapper.toRecipeResponse(savedRecipe));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteRecipe(@PathVariable String id) {
+  public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
     recipeService.delete(id);
     return ResponseEntity.noContent().build();
   }
