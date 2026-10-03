@@ -100,6 +100,9 @@ src: ./slides/07-rest-apis.md
 
 ]]] -->
 
+
+<!-- [[[
+
 ---
 layout: center
 ---
@@ -112,7 +115,8 @@ What has been doing all this for you
 src: ./slides/08-boot-layers-and-aspects.md
 ---
 
-<!-- [[[
+]]] -->
+
 ---
 layout: center
 ---
@@ -120,6 +124,15 @@ layout: center
 # Module 5 — Persistence
 
 The Recipe API, backed by a database
+
+---
+src: ./slides/09-hibernate-and-jpa.md
+---
+
+<!-- [[[
+---
+src: ./slides/10-spring-data-liquibase-swagger.md
+---
 ]]] -->
 
 <!-- [[[

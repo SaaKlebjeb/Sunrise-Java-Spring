@@ -16,3 +16,6 @@ target/
 build/
 out/
 .gradle/
+
+# H2 database files written by the Recipe API from the Spring Data session on
+**/recipe-api/data/

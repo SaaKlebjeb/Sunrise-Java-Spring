@@ -1,8 +1,8 @@
 # Java Enterprise Spring Framework — Core
 
-Modern Java → the Spring container → REST APIs → shipped in a container.
+Modern Java → the Spring container → REST APIs → a real database → shipped in a container.
 
-> **Sessions 1 to 7 are available now.** The rest of the course is being written and will land
+> **Sessions 1 to 9 are available now.** The rest of the course is being written and will land
 > here session by session.
 
 ---
@@ -30,6 +30,10 @@ Modern Java → the Spring container → REST APIs → shipped in a container.
   build after that is offline and instant. If your venue's wifi is unreliable, run the build
   once at home before class — even against the unedited skeleton, which downloads everything
   and then fails, which is fine.
+
+- **PostgreSQL, installed and running — but not until Session 10.** Session 9 uses H2, a database
+  that runs inside your application, so there is nothing to install for it. Install PostgreSQL
+  before the session after.
 
 - **IntelliJ IDEA** (Community Edition is fine). This is the editor the course assumes.
 
@@ -75,6 +79,16 @@ sessions/session-07-rest-apis/
   ├── lecture.md
   └── recipe-api/     ← a README with every class and test in it. You generate the project in class —
                         and KEEP it: the Recipe API is the project for the rest of the course
+
+sessions/session-08-boot-layers-and-aspects/
+  ├── lecture.md
+  ├── starting-point/ ← last session's finished Recipe API. Copy it if yours is not finished
+  └── recipe-api/     ← a README: Lombok, MapStruct and one aspect, three checkpoints
+
+sessions/session-09-hibernate-and-jpa/
+  ├── lecture.md
+  └── recipe-api/     ← last session's finished Recipe API, ready to work in — plus a README with
+                        four checkpoints, and EXTRA-tests.md for after class
 ```
 
 From Session 3 on, the exercise folder is named after the project inside it — the
@@ -90,6 +104,9 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | `.../lambda-drills/`, `.../order-tests/` | *(Sessions 3–4)* The exercise, as a named Maven project |
 | `.../lending-desk/README.md` | *(Session 5)* A **guide, not a project.** You generate the project from `start.spring.io` and write every class yourself |
 | `.../recipe-api/README.md` | *(Session 7)* A complete walkthrough, from generating the project to the last green test. Every class and every test is in it, to copy and run |
+| `.../starting-point/` | *(Session 8)* The previous session's finished project. Copy it if yours is not finished |
+| `.../recipe-api/` | *(Session 9)* The previous session's finished project **and** this session's README, in one folder. Work in it directly |
+| `.../recipe-api/EXTRA-tests.md` | *(Session 9)* Optional tests against a real database, for after class |
 | `.../<project>/pom.xml` | *(Session 3 on)* The Maven build. Sometimes it has TODOs for you |
 | `.../homework/` | A second exercise, in its own domain, done afterwards |
 | `slides/` | The slide decks, if you want to review what was on screen |
@@ -107,6 +124,8 @@ From Session 3 on, the exercise folder is named after the project inside it — 
 | [5](sessions/session-05-spring-core-di/lecture.md) | **Spring Framework & Dependency Injection** — the container, what Spring Boot adds, generating your own project, stereotypes and the root package rule, constructor injection, scopes and lifecycle, two beans of one interface | — *(demos are typed live)* | 7 checkpoints + **6 homework** |
 | [6](sessions/session-06-spring-mvc/lecture.md) | **Spring MVC** — one starter and a server nobody configured, the `DispatcherServlet`, how a URL finds your method, resolvers and message converters, the request lifecycle, thread-per-request, `MockMvc` and the `@WebMvcTest` slice | `mvn test` | 9 tests · homework: draft your personal project |
 | [7](sessions/session-07-rest-apis/lecture.md) | **REST APIs — Design, Validation & Errors** — REST as constraints, resource URLs, safe and idempotent methods, status codes on purpose with `ResponseEntity`, controller → service → repository layers (service as interface + `Impl`), request and response DTOs, Bean Validation and `@Valid`, one error shape with `ProblemDetail` and `@RestControllerAdvice`. **Starts the Recipe API, which you keep until Session 13** | `mvn test`, `curl` | 14 tests, all given — copy, run, go green · no homework |
+| [8](sessions/session-08-boot-layers-and-aspects/lecture.md) | **Lombok, MapStruct & Aspects** — the constructor and the getters you stop writing, a mapper that is an interface and why a forgotten field becomes a compile error, then aspect-oriented programming: advice, pointcuts, the proxy Spring puts around your service, and where filters and interceptors stand by comparison | `mvn test`, `curl` | 16 tests · 3 checkpoints · no homework |
+| [9](sessions/session-09-hibernate-and-jpa/lecture.md) | **Hibernate & JPA Mapping** — JPA as the specification and Hibernate as the implementation, the datasource and a connection pool, entities and why they cannot be records, a one-to-many and its owning side, a Spring Data repository that nobody writes, **derived queries** from a method name, **pagination and sorting**, and the N+1 problem read in the SQL log. **The Recipe API moves from a map to a database (H2)** | `mvn test`, `curl`, the H2 console | 12 tests, green at all 4 checkpoints · no homework · extra tests for after class |
 
 ---
 
@@ -202,8 +221,13 @@ first.
 **From Session 7 there is no homework.** The in-class exercise is the whole deliverable; if it
 does not finish in the room, finish it in your own time. From Session 7 the exercise also
 **carries on** — Session 7 starts the Recipe API and every session up to 13 builds on it. If you
-fall behind, each session from 8 on ships a `starting-point/` holding where the previous session
-ended: copy it in and carry on.
+fall behind, each session from 8 on ships where the previous session ended: Session 8 as a
+`starting-point/` folder to copy, Session 9 as the `recipe-api/` folder itself, which you work in
+directly.
+
+**From Session 9 no test is written in class.** The tests you already have stay green while
+everything underneath them changes — that is what they are for. What you add, you check with
+`curl`, the SQL log and the database itself.
 
 ---
 
@@ -278,6 +302,40 @@ Something still returns `Recipe` instead of `RecipeResponse`. No controller meth
 
 **`415 Unsupported Media Type` from `curl`.** *(Session 7)*
 The request has no `Content-Type: application/json` header. Add `-H 'Content-Type: application/json'`.
+
+**`cannot find symbol: method getTitle()` after adding Lombok.** *(Session 8)*
+Lombok is on the classpath but not running. The `annotationProcessorPaths` block is missing from
+the `maven-compiler-plugin` in `pom.xml`.
+
+**MapStruct says `Unmapped target property`.** *(Session 8)*
+Working as designed: with `ReportingPolicy.ERROR` every target field needs a source or an explicit
+`ignore = true`. The error names the field.
+
+**Your aspect never fires.** *(Session 8)*
+In this order: is `@Component` on it, is the pointcut's package and class name spelled right, and
+is the call coming from another bean rather than from the object itself.
+
+**The whole build goes red the moment `Recipe` becomes an entity.** *(Session 9)*
+Expected. `Recipe` stopped being a record, so `recipe.id()` and its constructor are gone and the id
+is a `Long`. The README lists every file that has to follow, in order; it is green again at the end
+of that list.
+
+**`No default constructor for entity`.** *(Session 9)*
+`@NoArgsConstructor` is missing from an entity. Hibernate creates the object empty, then fills it.
+
+**`GET /recipes` returns `[]` after you switch to the database.** *(Session 9)*
+Correct. The seeded recipes lived in the class you deleted, and H2 starts empty. `POST` some.
+
+**The H2 console says `Database "mem:recipes" not found`, or the page is a 404.** *(Session 9)*
+The first: type `jdbc:h2:mem:recipes` into the JDBC URL box, with the application running. The
+second: `spring-boot-h2console` is missing from `pom.xml`.
+
+**`No property '…' found for type 'Recipe'` and the application will not start.** *(Session 9)*
+A derived query's method name uses a field the entity does not have. Check the spelling in
+`RecipeRepository`.
+
+**`curl` prints half an answer, or something like `[1] 12345`.** *(Session 9)*
+The URL has an `&` in it and no quotes around it. Put the whole URL in double quotes.
 
 **IntelliJ shows no green arrows and doesn't recognise your own classes.** *(Session 3 on)*
 You opened the folder instead of the `pom.xml`. Close the project and re-open the POM itself.
