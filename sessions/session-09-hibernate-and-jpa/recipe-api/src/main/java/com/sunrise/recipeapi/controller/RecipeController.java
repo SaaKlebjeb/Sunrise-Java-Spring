@@ -2,10 +2,12 @@ package com.sunrise.recipeapi.controller;
 
 import com.sunrise.recipeapi.domain.Recipe;
 import com.sunrise.recipeapi.dto.CreateRecipeRequest;
+import com.sunrise.recipeapi.dto.PageResponse;
 import com.sunrise.recipeapi.dto.RecipeResponse;
 import com.sunrise.recipeapi.mapper.RecipeMapper;
 import com.sunrise.recipeapi.service.RecipeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +55,21 @@ public class RecipeController {
   public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
     recipeService.delete(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @GetMapping("/page")
+  public ResponseEntity<PageResponse<RecipeResponse>> getPageOfRecipe(
+      @RequestParam(name = "page", defaultValue = "0") int page,
+      @RequestParam(name = "size", defaultValue = "10") int size,
+      @RequestParam(name = "sort", defaultValue = "id") String sort) {
+    Page<Recipe> recipePage = recipeService.findAll(page, size, sort);
+    PageResponse<RecipeResponse> response =
+        new PageResponse<>(
+            recipePage.getContent().stream().map(recipeMapper::toRecipeResponse).toList(),
+            recipePage.getNumber(),
+            recipePage.getSize(),
+            recipePage.getTotalElements(),
+            recipePage.getTotalPages());
+    return ResponseEntity.ok(response);
   }
 }
