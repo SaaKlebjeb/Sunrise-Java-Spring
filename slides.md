@@ -125,15 +125,15 @@ layout: center
 
 The Recipe API, backed by a database
 
+<!-- [[[
 ---
 src: ./slides/09-hibernate-and-jpa.md
 ---
+]]] -->
 
-<!-- [[[
 ---
 src: ./slides/10-spring-data-liquibase-swagger.md
 ---
-]]] -->
 
 <!-- [[[
 ---
