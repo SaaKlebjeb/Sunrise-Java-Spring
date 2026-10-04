@@ -41,6 +41,14 @@ public class RecipeController {
         .body(recipeMapper.toRecipeResponse(savedRecipe));
   }
 
+  // PUT replaces the whole recipe, so the body has the same shape as a create
+  @PutMapping("/{id}")
+  public ResponseEntity<RecipeResponse> updateRecipe(
+      @PathVariable Long id, @Validated @RequestBody CreateRecipeRequest request) {
+    Recipe updatedRecipe = recipeService.replace(id, recipeMapper.toRecipe(request));
+    return ResponseEntity.ok(recipeMapper.toRecipeResponse(updatedRecipe));
+  }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
     recipeService.delete(id);

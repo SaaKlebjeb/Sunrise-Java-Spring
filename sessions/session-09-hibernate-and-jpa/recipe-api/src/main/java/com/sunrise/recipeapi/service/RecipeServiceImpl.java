@@ -30,6 +30,17 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
+  public Recipe replace(Long id, Recipe recipe) {
+    if (!recipeRepository.existsById(id)) {
+      throw new RecipeNotFoundException("recipe id: " + id + " not found");
+    }
+
+    recipe.setId(id);
+
+    return recipeRepository.save(recipe);
+  }
+
+  @Override
   public void delete(Long id) {
     recipeRepository.deleteById(id);
   }
