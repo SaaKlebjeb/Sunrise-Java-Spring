@@ -3,6 +3,8 @@ package com.sunrise.recipeapi.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "ingredients")
 @Getter

@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: 'db/changelog/001-create-recipes-and-ingredients.sql'
+  - include:
+      file: 'db/changelog/002-seed-recipes.sql'
