@@ -16,6 +16,7 @@ public interface RecipeMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "ingredients", ignore = true)
+    @Mapping(target = "tags", ignore = true)
     Recipe toRecipe(CreateRecipeRequest request);
 
     @AfterMapping

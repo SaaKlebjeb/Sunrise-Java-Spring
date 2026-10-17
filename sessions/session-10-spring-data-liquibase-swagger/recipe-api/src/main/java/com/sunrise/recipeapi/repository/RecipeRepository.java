@@ -20,4 +20,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
   @EntityGraph(attributePaths = "ingredients")
   List<Recipe> findAll();
+
+  List<Recipe> findAllByTagsNameIgnoreCase(String name);
 }

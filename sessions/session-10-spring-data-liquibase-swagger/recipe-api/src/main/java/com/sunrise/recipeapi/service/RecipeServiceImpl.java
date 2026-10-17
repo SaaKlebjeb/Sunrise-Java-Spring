@@ -1,6 +1,7 @@
 package com.sunrise.recipeapi.service;
 
 import com.sunrise.recipeapi.domain.Recipe;
+import com.sunrise.recipeapi.domain.Tag;
 import com.sunrise.recipeapi.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -43,11 +45,13 @@ public class RecipeServiceImpl implements RecipeService {
   @Override
   @Transactional
   public Recipe replace(Long id, Recipe recipe) {
-    if (!recipeRepository.existsById(id)) {
-      throw new RecipeNotFoundException("recipe id: " + id + " not found");
-    }
+    Recipe existing = findById(id);
 
-    recipe.setId(id);
+    // Set to old id
+    recipe.setId(existing.getId());
+    // Copy old tag
+    Set<Tag> oldTags = new LinkedHashSet<>(existing.getTags());
+  recipe.setTags(oldTags);
 
     return recipeRepository.save(recipe);
   }
