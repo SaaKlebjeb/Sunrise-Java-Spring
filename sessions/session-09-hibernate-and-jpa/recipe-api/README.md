@@ -1145,5 +1145,5 @@ must be running.
 Boot 4 moved the console into its own module.
 
 **`JPA metamodel must not be empty`** in a controller test — `@EnableJpaAuditing` has been put on
-`RecipeApiApplication`. See the auditing section of the lecture; it belongs on its own
+`RecipeApiSecurityApplication`. See the auditing section of the lecture; it belongs on its own
 `@Configuration` class.

@@ -1210,7 +1210,7 @@ Three things you will meet along the way:
   `unmappedTargetPolicy = ReportingPolicy.ERROR` stops the build: `Unmapped target properties:
   "createdAt, updatedAt"`. The client may not choose them, so they get `ignore = true`. The
   compile error you set up last session just earned its keep.
-- **Why `@EnableJpaAuditing` gets its own class.** Put it on `RecipeApiApplication` instead and
+- **Why `@EnableJpaAuditing` gets its own class.** Put it on `RecipeApiSecurityApplication` instead and
   every `@WebMvcTest` fails with `JPA metamodel must not be empty`. A web slice loads the
   application class but no JPA — and the annotation demands JPA. On its own `@Configuration`
   class, the web slice never sees it.
