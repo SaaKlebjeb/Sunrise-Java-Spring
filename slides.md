@@ -117,6 +117,7 @@ src: ./slides/08-boot-layers-and-aspects.md
 
 ]]] -->
 
+<!-- [[[
 ---
 layout: center
 ---
@@ -124,6 +125,7 @@ layout: center
 # Module 5 — Persistence
 
 The Recipe API, backed by a database
+]]] -->
 
 <!-- [[[
 ---
@@ -131,38 +133,48 @@ src: ./slides/09-hibernate-and-jpa.md
 ---
 ]]] -->
 
+<!-- [[[
 ---
 src: ./slides/10-spring-data-liquibase-swagger.md
 ---
 
-<!-- [[[
+]]] -->
+
+
 ---
 layout: center
 ---
 
-# Module 7 — Shipping
+# Module 6 — Security
 
-Containers and pipelines
-]]] -->
+Who is calling, and what they are allowed to do
 
-<!-- [[[
 ---
-src: ./slides/11-docker.md
+src: ./slides/11-how-a-request-gets-authorised.md
 ---
-]]] -->
-
-<!-- [[[
----
-src: ./slides/12-git-gitlab-cicd.md
----
-]]] -->
 
 <!-- [[[
 ---
 layout: center
 ---
 
-# Module 7 — Capstone
+# Module 7 — Tokens & Shipping
+
+Logins that last — then the Recipe API leaves your laptop
+]]] -->
+
+<!-- [[[
+---
+src: ./slides/12-tokens-and-shipping.md
+---
+]]] -->
+
+<!-- [[[
+---
+layout: center
+---
+
+# Module 8 — Capstone
 
 Inventory Management System
 ]]] -->
