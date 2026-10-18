@@ -1,9 +1,7 @@
 package com.sunrise.recipeapi.controller;
 
 import com.sunrise.recipeapi.domain.Recipe;
-import com.sunrise.recipeapi.dto.CreateRecipeRequest;
-import com.sunrise.recipeapi.dto.PageResponse;
-import com.sunrise.recipeapi.dto.RecipeResponse;
+import com.sunrise.recipeapi.dto.*;
 import com.sunrise.recipeapi.mapper.RecipeMapper;
 import com.sunrise.recipeapi.service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -59,10 +57,8 @@ public class RecipeController {
 
   @GetMapping("/page")
   public ResponseEntity<PageResponse<RecipeResponse>> getPageOfRecipe(
-      @RequestParam(name = "page", defaultValue = "0") int page,
-      @RequestParam(name = "size", defaultValue = "10") int size,
-      @RequestParam(name = "sort", defaultValue = "id") String sort) {
-    Page<Recipe> recipePage = recipeService.findAll(page, size, sort);
+          PaginationRequest pagination) {
+    Page<Recipe> recipePage = recipeService.findAll(pagination);
     PageResponse<RecipeResponse> response =
         new PageResponse<>(
             recipePage.getContent().stream().map(recipeMapper::toRecipeResponse).toList(),
@@ -79,5 +75,18 @@ public class RecipeController {
         recipeService.findByIngredient(ingredient).stream()
             .map(recipeMapper::toRecipeResponse)
             .toList());
+  }
+
+  @GetMapping("/filter")
+  public ResponseEntity<PageResponse<RecipeResponse>> filterRecipe(RecipeFilter filter, PaginationRequest pagination ) {
+    Page<Recipe> recipePage = recipeService.filter(filter, pagination);
+    PageResponse<RecipeResponse> response =
+            new PageResponse<>(
+                    recipePage.getContent().stream().map(recipeMapper::toRecipeResponse).toList(),
+                    recipePage.getNumber(),
+                    recipePage.getSize(),
+                    recipePage.getTotalElements(),
+                    recipePage.getTotalPages());
+    return ResponseEntity.ok(response);
   }
 }

@@ -3,12 +3,13 @@ package com.sunrise.recipeapi.repository;
 import com.sunrise.recipeapi.domain.Recipe;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+public interface RecipeRepository extends JpaRepository<Recipe, Long>, JpaSpecificationExecutor<Recipe> {
   List<Recipe> findByCuisineIgnoreCase(String cuisine);
 
   @Query("""

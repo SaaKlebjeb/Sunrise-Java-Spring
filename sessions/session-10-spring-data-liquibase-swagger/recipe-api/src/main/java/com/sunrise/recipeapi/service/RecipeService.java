@@ -1,6 +1,8 @@
 package com.sunrise.recipeapi.service;
 
 import com.sunrise.recipeapi.domain.Recipe;
+import com.sunrise.recipeapi.dto.PaginationRequest;
+import com.sunrise.recipeapi.dto.RecipeFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.EntityGraph;
 
@@ -12,6 +14,7 @@ public interface RecipeService {
     Recipe create(Recipe recipe);
     Recipe replace(Long id, Recipe recipe);
     void delete(Long id);
-    Page<Recipe> findAll(int page, int size, String sort);
+    Page<Recipe> findAll(PaginationRequest pagination);
     List<Recipe> findByIngredient(String ingredient);
+    Page<Recipe> filter(RecipeFilter filter, PaginationRequest pagination);
 }
