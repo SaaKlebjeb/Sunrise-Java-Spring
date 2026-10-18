@@ -1,11 +1,12 @@
 package com.sunrise.recipeapi.controller;
 
 import com.sunrise.recipeapi.domain.Recipe;
-import com.sunrise.recipeapi.dto.CreateRecipeRequest;
-import com.sunrise.recipeapi.dto.PageResponse;
-import com.sunrise.recipeapi.dto.RecipeResponse;
+import com.sunrise.recipeapi.dto.*;
 import com.sunrise.recipeapi.mapper.RecipeMapper;
 import com.sunrise.recipeapi.service.RecipeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/recipes")
 @RequiredArgsConstructor
+@Tag(name = "Recipe Controller", description = "CRUD and filter recipe")
 public class RecipeController {
   private final RecipeService recipeService;
   private final RecipeMapper recipeMapper;
@@ -30,6 +32,9 @@ public class RecipeController {
   }
 
   @GetMapping("/{id}")
+  @Operation(summary = "Get detail recipe by id")
+  @ApiResponse(responseCode = "200", description = "The recipe")
+  @ApiResponse(responseCode = "404", description = "No recipe has this id")
   public ResponseEntity<RecipeResponse> getRecipeById(@PathVariable Long id) {
     Recipe recipe = recipeService.findById(id);
     return ResponseEntity.ok(recipeMapper.toRecipeResponse(recipe));
@@ -59,10 +64,8 @@ public class RecipeController {
 
   @GetMapping("/page")
   public ResponseEntity<PageResponse<RecipeResponse>> getPageOfRecipe(
-      @RequestParam(name = "page", defaultValue = "0") int page,
-      @RequestParam(name = "size", defaultValue = "10") int size,
-      @RequestParam(name = "sort", defaultValue = "id") String sort) {
-    Page<Recipe> recipePage = recipeService.findAll(page, size, sort);
+          PaginationRequest pagination) {
+    Page<Recipe> recipePage = recipeService.findAll(pagination);
     PageResponse<RecipeResponse> response =
         new PageResponse<>(
             recipePage.getContent().stream().map(recipeMapper::toRecipeResponse).toList(),
@@ -79,5 +82,18 @@ public class RecipeController {
         recipeService.findByIngredient(ingredient).stream()
             .map(recipeMapper::toRecipeResponse)
             .toList());
+  }
+
+  @GetMapping("/filter")
+  public ResponseEntity<PageResponse<RecipeResponse>> filterRecipe(RecipeFilter filter, PaginationRequest pagination ) {
+    Page<Recipe> recipePage = recipeService.filter(filter, pagination);
+    PageResponse<RecipeResponse> response =
+            new PageResponse<>(
+                    recipePage.getContent().stream().map(recipeMapper::toRecipeResponse).toList(),
+                    recipePage.getNumber(),
+                    recipePage.getSize(),
+                    recipePage.getTotalElements(),
+                    recipePage.getTotalPages());
+    return ResponseEntity.ok(response);
   }
 }

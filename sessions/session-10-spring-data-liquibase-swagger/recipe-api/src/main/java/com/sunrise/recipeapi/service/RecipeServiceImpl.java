@@ -2,15 +2,20 @@ package com.sunrise.recipeapi.service;
 
 import com.sunrise.recipeapi.domain.Recipe;
 import com.sunrise.recipeapi.domain.Tag;
+import com.sunrise.recipeapi.dto.PaginationRequest;
+import com.sunrise.recipeapi.dto.RecipeFilter;
 import com.sunrise.recipeapi.repository.RecipeRepository;
+import com.sunrise.recipeapi.spec.RecipeSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +56,7 @@ public class RecipeServiceImpl implements RecipeService {
     recipe.setId(existing.getId());
     // Copy old tag
     Set<Tag> oldTags = new LinkedHashSet<>(existing.getTags());
-  recipe.setTags(oldTags);
+    recipe.setTags(oldTags);
 
     return recipeRepository.save(recipe);
   }
@@ -63,10 +68,10 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
-  public Page<Recipe> findAll(int page, int size, String sort) {
-    String sortField = SORTABLE.contains(sort) ? sort : "id";
-    int maxSize = Math.min(size, MAX_SIZE);
-    Pageable pageable = PageRequest.of(page, maxSize, Sort.by(sortField));
+  public Page<Recipe> findAll(PaginationRequest pagination) {
+    String sortField = SORTABLE.contains(pagination.getSort()) ? pagination.getSort() : "id";
+    int maxSize = Math.min(pagination.getSize(), MAX_SIZE);
+    Pageable pageable = PageRequest.of(pagination.getPage(), maxSize, Sort.by(sortField));
     return recipeRepository.findAll(pageable);
   }
 
@@ -75,5 +80,28 @@ public class RecipeServiceImpl implements RecipeService {
     return ingredient != null
         ? recipeRepository.findByIngredient(ingredient)
         : recipeRepository.findByIngredient("");
+  }
+
+  @Override
+  public Page<Recipe> filter(RecipeFilter filter, PaginationRequest pagination) {
+    String sortField = SORTABLE.contains(pagination.getSort()) ? pagination.getSort() : "id";
+    int maxSize = Math.min(pagination.getSize(), MAX_SIZE);
+    Pageable pageable = PageRequest.of(pagination.getPage(), maxSize, Sort.by(sortField));
+
+    List<Specification<Recipe>> specs = new ArrayList<>();
+    if (filter.getCuisine() != null) {
+      specs.add(RecipeSpecifications.hasCuisine(filter.getCuisine()));
+    }
+
+    if (filter.getMinutes() != null) {
+      specs.add(RecipeSpecifications.takesAtMost(filter.getMinutes()));
+    }
+
+    if (filter.getTagName() != null) {
+      specs.add(RecipeSpecifications.hasTag(filter.getTagName()));
+    }
+    Specification<Recipe> specification = Specification.allOf(specs);
+
+    return recipeRepository.findAll(specification, pageable);
   }
 }
