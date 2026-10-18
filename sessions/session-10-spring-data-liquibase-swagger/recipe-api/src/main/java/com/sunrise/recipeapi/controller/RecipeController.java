@@ -4,6 +4,9 @@ import com.sunrise.recipeapi.domain.Recipe;
 import com.sunrise.recipeapi.dto.*;
 import com.sunrise.recipeapi.mapper.RecipeMapper;
 import com.sunrise.recipeapi.service.RecipeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/recipes")
 @RequiredArgsConstructor
+@Tag(name = "Recipe Controller", description = "CRUD and filter recipe")
 public class RecipeController {
   private final RecipeService recipeService;
   private final RecipeMapper recipeMapper;
@@ -28,6 +32,9 @@ public class RecipeController {
   }
 
   @GetMapping("/{id}")
+  @Operation(summary = "Get detail recipe by id")
+  @ApiResponse(responseCode = "200", description = "The recipe")
+  @ApiResponse(responseCode = "404", description = "No recipe has this id")
   public ResponseEntity<RecipeResponse> getRecipeById(@PathVariable Long id) {
     Recipe recipe = recipeService.findById(id);
     return ResponseEntity.ok(recipeMapper.toRecipeResponse(recipe));
