@@ -5,3 +5,5 @@ databaseChangeLog:
       file: 'db/changelog/002-seed-recipes.sql'
   - include:
       file: 'db/changelog/003-create-tags.sql'
+  - include:
+      file: 'db/changelog/004-create-users.sql'

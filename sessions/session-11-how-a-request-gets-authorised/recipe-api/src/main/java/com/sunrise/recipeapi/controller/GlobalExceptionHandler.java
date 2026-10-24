@@ -1,5 +1,6 @@
 package com.sunrise.recipeapi.controller;
 
+import com.sunrise.recipeapi.service.EmailAlreadyExistException;
 import com.sunrise.recipeapi.service.RecipeNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -36,6 +37,15 @@ public class GlobalExceptionHandler {
     problemDetail.setTitle("Validation failed");
     problemDetail.setDetail(ex.getFieldErrors().size() + " fields not valid");
     problemDetail.setProperty("errors", errors);
+    return problemDetail;
+  }
+
+  @ExceptionHandler(EmailAlreadyExistException.class)
+  ProblemDetail handleEmailExist(EmailAlreadyExistException ex) {
+    ProblemDetail problemDetail =
+            ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getLocalizedMessage());
+    problemDetail.setType(URI.create("recipe-api.sunrise.com/docs/EmailAlreadyExist"));
+    problemDetail.setTitle("Email exists");
     return problemDetail;
   }
 }
