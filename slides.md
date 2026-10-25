@@ -26,12 +26,12 @@ info: |
   Session 9: Hibernate & JPA Mapping
   Session 10: Spring Data JPA, Liquibase & Swagger
   Session 11: How a request gets authorised
-  Session 12: Docker
-  Session 13: Git, GitLab & CI/CD
+  Session 12: Tokens that last, and GitHub login
+  Session 13: Shipping — Docker, Compose, Jib, GitHub Actions, Render
   Session 14: Capstone — Inventory Management System
 
   Java 25 · Spring Boot 4.0.8 · Maven
-keywords: Java, Spring, Spring Boot, REST, Dependency Injection, AOP, Spring MVC, Docker, GitLab CI
+keywords: Java, Spring, Spring Boot, REST, Dependency Injection, AOP, Spring MVC, Docker, Jib, GitHub Actions, Render
 author: Sunrise Java Course
 description: Modern Java to a containerized Spring Boot REST API, with self-verifying exercises.
 drawings:
@@ -141,6 +141,7 @@ src: ./slides/10-spring-data-liquibase-swagger.md
 ]]] -->
 
 
+<!-- [[[
 ---
 layout: center
 ---
@@ -152,20 +153,31 @@ Who is calling, and what they are allowed to do
 ---
 src: ./slides/11-how-a-request-gets-authorised.md
 ---
+]]] -->
+
+---
+layout: center
+---
+
+# Module 7 — Tokens & GitHub login
+
+Logins that last, and logins without a password
+
+---
+src: ./slides/12-tokens-and-github-login.md
+---
 
 <!-- [[[
 ---
 layout: center
 ---
 
-# Module 7 — Tokens & Shipping
+# Module 8 — Shipping
 
-Logins that last — then the Recipe API leaves your laptop
-]]] -->
+The Recipe API leaves your laptop
 
-<!-- [[[
 ---
-src: ./slides/12-tokens-and-shipping.md
+src: ./slides/13-shipping.md
 ---
 ]]] -->
 
@@ -174,13 +186,13 @@ src: ./slides/12-tokens-and-shipping.md
 layout: center
 ---
 
-# Module 8 — Capstone
+# Module 9 — Capstone
 
 Inventory Management System
 ]]] -->
 
 <!-- [[[
 ---
-src: ./slides/13-capstone-inventory.md
+src: ./slides/14-capstone-inventory.md
 ---
 ]]] -->
