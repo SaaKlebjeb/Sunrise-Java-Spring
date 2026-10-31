@@ -36,7 +36,12 @@ public class SecurityConfig {
             req ->
                 req.requestMatchers(HttpMethod.GET, "/recipes/**", "/tags/**")
                     .permitAll()
-                    .requestMatchers("/auth/**", "/error/**")
+                    .requestMatchers("/auth/**", "/error/**","/swagger-ui.html",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/v3/api-docs.yaml",
+                            "/swagger-resources/**",
+                            "/webjars/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated())

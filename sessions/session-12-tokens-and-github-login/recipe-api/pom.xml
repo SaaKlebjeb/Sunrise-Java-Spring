@@ -42,6 +42,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.48</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -57,6 +58,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.7.14</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
